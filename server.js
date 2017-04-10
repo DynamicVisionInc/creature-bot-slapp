@@ -18,7 +18,7 @@ var slapp = Slapp({
 
 var HELP_TEXT = `
 I will respond to the following messages:
-\`help\` - to see this message!
+\`help\` - to see this message
 \`hi\` - to demonstrate a conversation that tracks state.
 \`thanks\` - to demonstrate a simple response.
 \`<type-any-other-text>\` - to demonstrate a random emoticon response, some of the time :wink:.
@@ -103,6 +103,11 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
       color: '#7CD197'
     }]
   })
+})
+
+// response to the user asking "how did you get here?"
+slapp.message('how did you get here?', ['mention', 'direct_message'], (msg) => {
+  msg.say('Team Rocket! :rocket:')
 })
 
 // Catch-all for any other responses not handled above
