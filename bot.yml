@@ -1,4 +1,5 @@
-name: creaturebot
-description: ☝️☝️ Check out the README ☝️☝️ in the repo for setup instructions. By the way, this is just the description in the bot.yml file - feel free to change it 😉
-avatar: .beepboop/avatar.png
+name: Creature Bot
+author: Dynamic Vision
+description: Creature personifies your creative gene as an artificial intelligence bot that prompts you to cultivate creativity. Think of it as a digital pet that feeds on inspiration.
+avatar: img/creature-mascot-01.png
 # To learn everything supported in the bot.yml file, visit https://beepboophq.com/docs/article/bot-yml
