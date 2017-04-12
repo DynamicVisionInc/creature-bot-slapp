@@ -131,6 +131,51 @@ slapp.message('how did you get here?', ['mention', 'direct_message'], (msg) => {
   msg.say('Team Rocket! :rocket:')
 })
 
+// "Creative motivators" flow
+slapp
+  .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
+    msg
+      .say(`What is something that motivates you to create?`)
+      // sends next event from user to this route, passing along state
+      .route('motivates')
+  })
+  .route('motivates', (msg, state) => {
+    var text = (msg.body.event && msg.body.event.text) || ''
+
+    // user may not have typed text as their next action, ask again and re-route
+    if (!text) {
+      return msg
+        .say("Whoops, I'm still waiting to hear a response.")
+        .say('What is something that motivates you to create?')
+        .route('motivates', state)
+    }
+
+    // add their response to state
+    state.motivates = text
+
+    msg
+      .say(`Ok. And what's something that discourages you from creating?`)
+      .route('discourages', state)
+  })
+  .route('discourages', (msg, state) => {
+    var text = (msg.body.event && msg.body.event.text) || ''
+
+    // user may not have typed text as their next action, ask again and re-route
+    if (!text) {
+      return msg
+        .say("I'm eagerly awaiting to hear something that discourages you from creating.")
+        .route('discourages', state)
+    }
+
+    // add their response to state
+    state.discourages = text
+
+    msg
+      .say('Thanks for sharing.')
+      .say(`Here's what you've told me so far: \`\`\`${JSON.stringify(state)}\`\`\``)
+    // At this point, since we don't route anywhere, the "conversation" is over
+  })
+
 // Catch-all for any other responses not handled above
 slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
   // respond only 40% of the time
