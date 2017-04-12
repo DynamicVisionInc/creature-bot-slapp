@@ -172,7 +172,7 @@ slapp
 
     msg
       .say('Thanks for sharing.')
-      .say(`Here's what you've told me so far: \`\`\`${JSON.stringify(state)}\`\`\``)
+      .say(`Do more of this: `+state.motivates+'. Do less of this: '+state.discourages)
     // At this point, since we don't route anywhere, the "conversation" is over
   })
 
