@@ -26,6 +26,13 @@ module.exports = (server, db) => {
 // Setup different handlers for messages
 //*********************************************
 
+  app.message('store', (msg) => {
+    db.saveConvo(1, msg.body, (err, convo) => {
+      console.log(err)
+    })
+    msg.respond(msg.body.response_url, `${value} is a good choice!`)
+  })
+
   // response to the user typing "help"
   app.message('help', ['mention', 'direct_message'], (msg) => {
     msg.say(HELP_TEXT)

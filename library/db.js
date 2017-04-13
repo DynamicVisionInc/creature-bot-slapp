@@ -33,7 +33,7 @@ module.exports = () => {
     },
 
     saveConvo (id, data, done) {
-      database.ref(`convos/${id}`).set(data, (err) => {
+      database.ref(`convos/${id}`).push(data, (err) => {
         if (err) {
           return done(err)
         }
