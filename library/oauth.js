@@ -6,13 +6,9 @@ const slack = require('slapp/client')
 const ConvoStore = require('./convo-store')
 
 module.exports = (server, db) => {
-  // let clientId = process.env.SLACK_CLIENT_ID
-  // let clientSecret = process.env.SLACK_CLIENT_SECRET
-  // let domain = process.env.DOMAIN
-
-  let clientId = '2918553111.167195077991'
-  let clientSecret = '78d69387b95c71dde707ffc9059460e2'
-  let domain = 'beepboophq.com/proxy/ed2ad9f0dc2a486c8f1f273e2fc23556/'
+  let clientId = process.env.SLACK_CLIENT_ID
+  let clientSecret = process.env.SLACK_CLIENT_SECRET
+  let domain = process.env.DOMAIN
 
   server.get('/add', (req, res) => {
     console.log('add')
