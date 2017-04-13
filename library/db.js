@@ -16,6 +16,7 @@ module.exports = () => {
   let database = firebase.database()
 
   return {
+    // Team
     saveTeam (id, data, done) {
       database.ref(`teams/${id}`).set(data, (err) => {
         if (err) {
@@ -32,6 +33,7 @@ module.exports = () => {
       }, done)
     },
 
+    // Conversation
     saveConvo (id, data, done) {
       database.ref(`convos/${id}`).push(data, (err) => {
         if (err) {
@@ -50,6 +52,27 @@ module.exports = () => {
 
     deleteConvo (id, done) {
       database.ref(`convos/${id}`).remove(done)
+    }
+
+    // Motivations
+    saveMotivations (id, data, done) {
+      database.ref(`motivations/${id}`).push(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
+
+    getMotivations (id, done) {
+      database.ref(`motivations/${id}`).once('value', (snapshot) => {
+        done(null, snapshot.val())
+      }, done)
+    },
+
+    deleteMotivations (id, done) {
+      database.ref(`motivations/${id}`).remove(done)
     }
   }
 }

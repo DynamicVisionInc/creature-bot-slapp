@@ -174,6 +174,11 @@ module.exports = (server, db) => {
       // add their response to state
       state.discourages = text
 
+      // Store the responses
+      db.saveMotivations(msg.body.event.user, { 'motivates' : state.motivates , 'discourages' : state.discourages }, (err, convo) => {
+        console.log(err)
+      })
+
       msg
         .say('Thanks for sharing.')
         .say(`Do more of this: `+state.motivates+'. Do less of this: '+state.discourages)
