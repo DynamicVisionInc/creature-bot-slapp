@@ -2,4 +2,15 @@ name: Creature Bot
 author: Dynamic Vision
 description: Creature personifies your creative gene as an artificial intelligence bot that prompts you to cultivate creativity. Think of it as a digital pet that feeds on inspiration.
 avatar: .beepboop/creature-mascot-512.png
+config:
+  - name: FIREBASE_DB_URL
+    info: Firebase database url
+  - name: FIREBASE_SERVICE_ACCOUNT_BASE64
+    friendly_name: Base64 encoded service-account.json file
+  - name: SLACK_CLIENT_ID
+    info: Slack Client Id
+  - name: SLACK_CLIENT_SECRET
+    info: Slack Client Secret
+  - name: DOMAIN
+    info: Domain
 # To learn everything supported in the bot.yml file, visit https://beepboophq.com/docs/article/bot-yml

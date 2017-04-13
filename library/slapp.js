@@ -185,19 +185,6 @@ module.exports = (server, db) => {
       // At this point, since we don't route anywhere, the "conversation" is over
     })
 
-  // Catch-all for any other responses not handled above
-  app.message('.*', ['direct_mention', 'direct_message'], (msg) => {
-    // respond only 40% of the time
-    if (Math.random() < 0.4) {
-      msg.say([':wave:', ':pray:', ':raised_hands:'])
-    }
-  })
-
-
-
-
-
-
   app
     .message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
       msg

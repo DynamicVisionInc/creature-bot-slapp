@@ -4,8 +4,8 @@ const firebase = require('firebase-admin')
 
 module.exports = () => {
 
-  // const firebaseDBUrl = process.env.FIREBASE_DB_URL
-  const firebaseDBUrl = 'https://creature-9ef38.firebaseio.com'
+  const firebaseDBUrl = process.env.FIREBASE_DB_URL
+  // const firebaseDBUrl = 'https://creature-9ef38.firebaseio.com'
   const serviceAccountBase64 = process.env.FIREBASE_SERVICE_ACCOUNT_BASE64
 
   firebase.initializeApp({
