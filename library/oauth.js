@@ -12,7 +12,7 @@ module.exports = (server, db) => {
 
   let clientId = '2918553111.167195077991'
   let clientSecret = '78d69387b95c71dde707ffc9059460e2'
-  let domain = process.env.DOMAIN
+  let domain = 'beepboophq.com'
 
   server.get('/add', (req, res) => {
     console.log('add')
