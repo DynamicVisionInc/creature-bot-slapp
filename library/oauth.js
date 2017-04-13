@@ -13,7 +13,10 @@ module.exports = (server, db) => {
   server.get('/add', (req, res) => {
     console.log('add')
 
-    db.saveConvo(1, {'column':'value'}, (err, convo) => {
+    db.saveConvo(2, {
+        'column':'value',
+        'key2': 'value2'
+      }, (err, convo) => {
       console.log(err)
     })
 
