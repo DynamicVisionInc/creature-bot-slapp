@@ -52,7 +52,7 @@ module.exports = () => {
 
     deleteConvo (id, done) {
       database.ref(`convos/${id}`).remove(done)
-    }
+    },
 
     // Motivations
     saveMotivations (id, data, done) {
