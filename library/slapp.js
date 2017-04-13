@@ -27,10 +27,10 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('store', ['mention', 'direct_message'], (msg) => {
-    db.saveConvo(1, msg.body, (err, convo) => {
+    db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
       console.log(err)
     })
-    msg.respond(msg.body.response_url, `${value} is a good choice!`)
+    msg.say(`Conversation model stored!`)
   })
 
   // response to the user typing "help"
