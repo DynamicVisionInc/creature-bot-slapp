@@ -26,7 +26,7 @@ module.exports = (server, db) => {
 // Setup different handlers for messages
 //*********************************************
 
-  app.message('store', (msg) => {
+  app.message('store', ['mention', 'direct_message'], (msg) => {
     db.saveConvo(1, msg.body, (err, convo) => {
       console.log(err)
     })
