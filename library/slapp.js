@@ -15,7 +15,9 @@ module.exports = (server, db) => {
 
   // Middleware
   app.use((msg, next) => {
-    console.log(msg)
+    db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
+      console.log(err)
+    })
     next()
   })
 
@@ -33,9 +35,7 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('store', ['mention', 'direct_message'], (msg, text, greeting) => {
-    db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
-      console.log(err)
-    })
+
     msg
       .say(`Conversation model stored!`)
       .route('store_step_2')
