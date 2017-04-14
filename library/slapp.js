@@ -77,7 +77,7 @@ module.exports = (server, db) => {
         console.log(motivations)
       })
 
-      if (motivators)
+      if (motivators instanceof Object)
       {
         msg
           .say('You have motivations set.')
