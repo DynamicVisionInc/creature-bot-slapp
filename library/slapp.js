@@ -73,9 +73,10 @@ module.exports = (server, db) => {
         if (err) {
           console.error(err)
         }
-        motivators = motivations
+
         console.log(motivations)
       })
+      motivators = motivations
       console.log(typeof(motivators))
       var value = typeof(motivators)
       msg.say(value)
