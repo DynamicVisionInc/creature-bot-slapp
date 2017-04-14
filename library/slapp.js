@@ -1,14 +1,14 @@
 'use strict'
 
 const Slapp = require('slapp')
-const Context = require('./context')
-const ConvoStore = require('./convo-store')
+const Context = require('slapp-context-beepboop')
+const ConvoStore = require('slapp-convo-beepboop')
 
 module.exports = (server, db) => {
   let app = Slapp({
     verify_token: process.env.SLACK_VERIFY_TOKEN,
-    context: Context(db),
-    convo_store: ConvoStore(db)
+    context: Context(),
+    convo_store: ConvoStore()
   })
 
 
@@ -44,7 +44,7 @@ module.exports = (server, db) => {
       .route('store_step_2')
   })
 
-  app.action('store_step_2', (msg, state) => {
+  app.route('store_step_2', (msg, state) => {
     var text = (msg.body.event && msg.body.event.text) || ''
     msg.say(['Okay'])
   })
