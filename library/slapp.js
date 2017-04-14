@@ -30,8 +30,61 @@ module.exports = (server, db) => {
     db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
       console.log(err)
     })
-    msg.say(`Conversation model stored!`)
+    msg
+      .say(`Conversation model stored!`)
   })
+
+
+
+  app
+    .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
+      msg
+        .say(`What is something that motivates you to create?`)
+        // sends next event from user to this route, passing along state
+        .route('motivates')
+    })
+  app.route('motivates', (msg, state) => {
+      var text = (msg.body.event && msg.body.event.text) || ''
+
+      // user may not have typed text as their next action, ask again and re-route
+      if (!text) {
+        return msg
+          .say("Whoops, I'm still waiting to hear a response.")
+          .say('What is something that motivates you to create?')
+          .route('motivates', state)
+      }
+
+      // add their response to state
+      state.motivates = text
+
+      msg
+        .say(`Ok. And what's something that discourages you from creating?`)
+        .route('discourages', state)
+    })
+  app.route('discourages', (msg, state) => {
+      var text = (msg.body.event && msg.body.event.text) || ''
+
+      // user may not have typed text as their next action, ask again and re-route
+      if (!text) {
+        return msg
+          .say("I'm eagerly awaiting to hear something that discourages you from creating.")
+          .route('discourages', state)
+      }
+
+      // add their response to state
+      state.discourages = text
+
+      // Store the responses
+      db.saveMotivations(msg.body.event.user, { 'motivates' : state.motivates , 'discourages' : state.discourages }, (err, convo) => {
+        console.log(err)
+      })
+
+      msg
+        .say('Thanks for sharing.')
+        .say(`Do more of this: `+state.motivates+'. Do less of this: '+state.discourages)
+      // At this point, since we don't route anywhere, the "conversation" is over
+    })
+
 
   // response to the user typing "help"
   app.message('help', ['mention', 'direct_message'], (msg) => {
@@ -40,19 +93,19 @@ module.exports = (server, db) => {
 
   // Test response for boxes
   app.message('yesno', (msg) => {
-      msg.say({
-        text: '',
-        attachments: [
-          {
-            text: '',
-            fallback: 'Yes or No?',
-            callback_id: 'yesno_callback',
-            actions: [
-              { name: 'answer', text: 'Yes', type: 'button', value: 'yes' },
-              { name: 'answer', text: 'No',  type: 'button',  value: 'no' }
-            ]
-          }]
-        })
+    msg.say({
+      text: '',
+      attachments: [
+        {
+          text: '',
+          fallback: 'Yes or No?',
+          callback_id: 'yesno_callback',
+          actions: [
+            { name: 'answer', text: 'Yes', type: 'button', value: 'yes' },
+            { name: 'answer', text: 'No',  type: 'button',  value: 'no' }
+          ]
+        }]
+      })
   })
 
   app.action('yesno_callback', 'answer', (msg, value) => {
@@ -136,54 +189,7 @@ module.exports = (server, db) => {
   })
 
   // "Creative motivators" flow
-  app
-    .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
-      msg
-        .say(`What is something that motivates you to create?`)
-        // sends next event from user to this route, passing along state
-        .route('motivates')
-    })
-    .route('motivates', (msg, state) => {
-      var text = (msg.body.event && msg.body.event.text) || ''
 
-      // user may not have typed text as their next action, ask again and re-route
-      if (!text) {
-        return msg
-          .say("Whoops, I'm still waiting to hear a response.")
-          .say('What is something that motivates you to create?')
-          .route('motivates', state)
-      }
-
-      // add their response to state
-      state.motivates = text
-
-      msg
-        .say(`Ok. And what's something that discourages you from creating?`)
-        .route('discourages', state)
-    })
-    .route('discourages', (msg, state) => {
-      var text = (msg.body.event && msg.body.event.text) || ''
-
-      // user may not have typed text as their next action, ask again and re-route
-      if (!text) {
-        return msg
-          .say("I'm eagerly awaiting to hear something that discourages you from creating.")
-          .route('discourages', state)
-      }
-
-      // add their response to state
-      state.discourages = text
-
-      // Store the responses
-      db.saveMotivations(msg.body.event.user, { 'motivates' : state.motivates , 'discourages' : state.discourages }, (err, convo) => {
-        console.log(err)
-      })
-
-      msg
-        .say('Thanks for sharing.')
-        .say(`Do more of this: `+state.motivates+'. Do less of this: '+state.discourages)
-      // At this point, since we don't route anywhere, the "conversation" is over
-    })
 
   app
     .message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
