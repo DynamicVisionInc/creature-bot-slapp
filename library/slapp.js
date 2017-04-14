@@ -74,25 +74,23 @@ module.exports = (server, db) => {
           console.error(err)
         }
 
-        console.log(motivations)
+        motivators = motivations
+        console.log(typeof(motivators))
+        var value = typeof(motivators)
+        msg.say(value)
+        if (motivators instanceof Object)
+        {
+          msg
+            .say('You have motivations set.')
+        }
+        else
+        {
+          msg
+            .say(`What is something that motivates you to create?`)
+            // sends next event from user to this route, passing along state
+            .route('motivates')
+        }
       })
-      motivators = motivations
-      console.log(typeof(motivators))
-      var value = typeof(motivators)
-      msg.say(value)
-      if (motivators instanceof Object)
-      {
-        msg
-          .say('You have motivations set.')
-      }
-      else
-      {
-        msg
-          .say(`What is something that motivates you to create?`)
-          // sends next event from user to this route, passing along state
-          .route('motivates')
-      }
-
     })
   app.route('motivates', (msg, state) => {
       var text = (msg.body.event && msg.body.event.text) || ''
