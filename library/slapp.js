@@ -52,7 +52,7 @@ module.exports = (server, db) => {
 
   app.message('test', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
     msg
-      .say(`${greeting}, how are you?`)
+      .say(`How are you?`)
       .route('handleHowAreYou')  // where to route the next msg in the conversation
   })
 
@@ -254,7 +254,8 @@ module.exports = (server, db) => {
     .message(/.*/, 'mention', (msg) => {
       msg.say('You really do care about me. :heart:')
     })
-    .attachToExpress(server)
+
+    app.attachToExpress(server)
 
 
 
