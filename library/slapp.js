@@ -47,6 +47,20 @@ module.exports = (server, db) => {
   })
 
 
+  app.message('test', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
+    msg
+      .say(`${greeting}, how are you?`)
+      .route('handleHowAreYou')  // where to route the next msg in the conversation
+  })
+
+  // register a route handler
+  app.route('handleHowAreYou', (msg) => {
+    // respond with a random entry from array
+    msg.say(['Me too', 'Noted', 'That is interesting'])
+  })
+
+
+
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
       msg
