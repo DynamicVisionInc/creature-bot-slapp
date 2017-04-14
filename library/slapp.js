@@ -70,7 +70,6 @@ module.exports = (server, db) => {
       db.getMotivations(msg.body.event.user, , (err, motivations) => {
         if (err) {
           console.error(err)
-          return res.send(err)
         }
         var motivators = motivations
       })
