@@ -74,6 +74,7 @@ module.exports = (server, db) => {
           console.error(err)
         }
         motivators = motivations
+        console.log(motivations)
       })
 
       if (motivators)
