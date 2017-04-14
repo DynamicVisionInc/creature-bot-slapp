@@ -67,7 +67,7 @@ module.exports = (server, db) => {
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
 
-      db.getMotivations(msg.body.event.user, , (err, motivations) => {
+      db.getMotivations(msg.body.event.user, (err, motivations) => {
         if (err) {
           console.error(err)
         }
