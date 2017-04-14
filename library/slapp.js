@@ -66,10 +66,28 @@ module.exports = (server, db) => {
 
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
-      msg
-        .say(`What is something that motivates you to create?`)
-        // sends next event from user to this route, passing along state
-        .route('motivates')
+
+      db.getMotivations(msg.body.event.user, , (err, motivations) => {
+        if (err) {
+          console.error(err)
+          return res.send(err)
+        }
+        motivators = motivations
+      })
+
+      if (motivators)
+      {
+        msg
+          .say('You have motivations set.')
+      }
+      else
+      {
+        msg
+          .say(`What is something that motivates you to create?`)
+          // sends next event from user to this route, passing along state
+          .route('motivates')
+      }
+
     })
   app.route('motivates', (msg, state) => {
       var text = (msg.body.event && msg.body.event.text) || ''
