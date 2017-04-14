@@ -15,7 +15,8 @@ module.exports = (server, db) => {
 
   // Middleware
   app.use((msg, next) => {
-    db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
+    // msg.body.event.user,
+    db.saveConvo(1, msg.body, (err, convo) => {
       console.log(err)
     })
     next()
