@@ -38,7 +38,11 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('store', ['mention', 'direct_message'], (msg, text, greeting) => {
-
+    db.increaseExperience(msg.body.event.user, (err) => {
+      if (err) {
+        console.log(err)
+      }
+    })
     msg
       .say(`Conversation model stored!`)
       .route('store_step_2')

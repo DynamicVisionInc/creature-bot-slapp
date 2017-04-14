@@ -72,7 +72,14 @@ module.exports = () => {
 
     deleteMotivations (id, done) {
       database.ref(`motivations/${id}`).remove(done)
+    },
+
+    increaseExperience (id, done) {
+      database.ref(`user/${id}/experience`).transaction( (current_value) => {
+        return (current_value || 0) + 1
+      }, done)
     }
+
   }
 }
 
