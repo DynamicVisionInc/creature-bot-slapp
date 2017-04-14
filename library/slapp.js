@@ -44,7 +44,7 @@ module.exports = (server, db) => {
       .route('store_step_2')
   })
 
-  app.route('store_step_2', (msg, state) => {
+  app.action('store_step_2', (msg, state) => {
     var text = (msg.body.event && msg.body.event.text) || ''
     msg.say(['Okay'])
   })
