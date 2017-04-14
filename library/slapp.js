@@ -75,7 +75,6 @@ module.exports = (server, db) => {
         }
 
         motivators = motivations
-        msg.say(motivators)
         if (motivators instanceof Object)
         {
           msg
