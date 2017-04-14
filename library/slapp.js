@@ -26,14 +26,19 @@ module.exports = (server, db) => {
 // Setup different handlers for messages
 //*********************************************
 
-  app.message('store', ['mention', 'direct_message'], (msg) => {
+  app.message('store', ['mention', 'direct_message'], (msg, text, greeting) => {
     db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
       console.log(err)
     })
     msg
       .say(`Conversation model stored!`)
+      .route('store_step_2')
   })
 
+  app.route('store_step_2', (msg, state) => {
+    var text = (msg.body.event && msg.body.event.text) || ''
+    msg.say(['Okay'])
+  })
 
 
   app
