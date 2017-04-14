@@ -79,7 +79,7 @@ module.exports = (server, db) => {
         if (motivators instanceof Object)
         {
           msg
-            .say('You have motivations set.')
+            .say('You have motivations set. ' + motivators.discourages + ' ' + motivators.motivates)
         }
         else
         {
