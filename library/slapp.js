@@ -13,6 +13,12 @@ module.exports = (server, db) => {
 
 
 
+  // Middleware
+  app.use((msg, next) => {
+    console.log(msg)
+    next()
+  })
+
   var HELP_TEXT = `
   I will respond to the following messages:
   \`help\` - to see this message
