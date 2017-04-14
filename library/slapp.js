@@ -75,9 +75,7 @@ module.exports = (server, db) => {
         }
 
         motivators = motivations
-        console.log(typeof(motivators))
-        var value = typeof(motivators)
-        msg.say(value)
+        msg.say(motivators.discourages)
         if (motivators instanceof Object)
         {
           msg

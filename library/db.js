@@ -55,7 +55,7 @@ module.exports = () => {
 
     // Motivations
     saveMotivations (id, data, done) {
-      database.ref(`motivations/${id}`).push(data, (err) => {
+      database.ref(`motivations/${id}`).set(data, (err) => {
         if (err) {
           return done(err)
         }
