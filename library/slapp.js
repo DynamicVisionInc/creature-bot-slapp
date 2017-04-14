@@ -72,7 +72,7 @@ module.exports = (server, db) => {
           console.error(err)
           return res.send(err)
         }
-        motivators = motivations
+        var motivators = motivations
       })
 
       if (motivators)
