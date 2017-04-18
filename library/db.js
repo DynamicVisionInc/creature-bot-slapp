@@ -15,7 +15,7 @@ module.exports = () => {
   let database = firebase.database()
 
   return {
-    // Team
+    // Team CRUD
     saveTeam (id, data, done) {
       database.ref(`teams/${id}`).set(data, (err) => {
         if (err) {
@@ -32,7 +32,7 @@ module.exports = () => {
       }, done)
     },
 
-    // Conversation
+    // Conversation CRUD
     saveConvo (id, data, done) {
       database.ref(`convos/${id}`).push(data, (err) => {
         if (err) {
@@ -53,7 +53,7 @@ module.exports = () => {
       database.ref(`convos/${id}`).remove(done)
     },
 
-    // Motivations
+    // Motivations CRUD
     saveMotivations (id, data, done) {
       database.ref(`motivations/${id}`).set(data, (err) => {
         if (err) {
@@ -74,6 +74,7 @@ module.exports = () => {
       database.ref(`motivations/${id}`).remove(done)
     },
 
+    // Experience Incrementer
     increaseExperience (id, done) {
       database.ref(`user/${id}/experience`).transaction( (current_value) => {
         return (current_value || 0) + 1
