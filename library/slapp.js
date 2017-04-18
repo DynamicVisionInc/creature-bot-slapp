@@ -17,7 +17,7 @@ module.exports = (server, db) => {
   app.use((msg, next) => {
     if (msg.body.event.user)
     {
-      db.saveConvo(msg.body.event.user, msg.stripDirectMention(), (err, convo) => {
+      db.saveConvo(msg.body.event.user, msg, (err, convo) => {
         console.log(err)
       })
     }
