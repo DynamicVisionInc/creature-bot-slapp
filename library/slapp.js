@@ -50,6 +50,19 @@ module.exports = (server, db) => {
 
   app.route('store_step_2', (msg, state) => {
     var text = (msg.body.event && msg.body.event.text) || ''
+    msg.say({
+      text: '',
+      attachments: [
+        {
+          title: 'Title',
+          pretext: 'Pretext _supports_ mrkdwn',
+          text: 'Testing *right now!*',
+          mrkdwn_in: [
+            "text",
+            "pretext"
+          ]
+        }]
+      })
     msg.say(['<https://media.stsci.edu/uploads/story/thumbnail/1178/low_STSCI-H-p1715a-t-400x400.png>'])
   })
 
