@@ -127,11 +127,11 @@ module.exports = (server, db) => {
           console.error(err)
         }
         var i = 0;
-        var random = Math.floor(Math.random() * spaceImages.numChildren());
-        spaceImages.forEach( function(spaceImages) {
+        var random = Math.floor(Math.random() * count(spaceImages);
+        spaceImages.forEach( function(spaceImage) {
           if (i == random)
           {
-            var givenSpaceImage = spaceImages.val()
+            var givenSpaceImage = spaceImage
             msg.say(givenSpaceImage)
           }
           i++;
