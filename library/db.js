@@ -110,7 +110,7 @@ module.exports = () => {
           i++;
         });
       }, done)
-    }
+    },
 
     deleteSpaceImages (id, done) {
       database.ref(`spaceImages/${id}`).remove(done)
