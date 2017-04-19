@@ -101,6 +101,7 @@ module.exports = (server, db) => {
     },(err, spaceImages) => {
         if (err) {
           console.error(err)
+          msg.say(err)
         }
 
     })
