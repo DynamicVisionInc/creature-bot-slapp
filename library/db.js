@@ -82,7 +82,7 @@ module.exports = () => {
     },
 
     // Space images CRUD
-    saveSpaceImages (id, data, done) {
+    saveSpaceImages (data, done) {
       database.ref(`spaceImages`).push(data, (err) => {
         if (err) {
           return done(err)
