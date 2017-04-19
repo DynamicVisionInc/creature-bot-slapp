@@ -81,6 +81,17 @@ module.exports = (server, db) => {
   })
 
   app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
+    db.saveSpaceImages( {
+      'title': "NASA's Hubble Takes Close-up Portrait of Jupiter",
+      'text': 'The planet Jupiter is the fifth planet out from the Sun, and is two and a half times more massive than all the other planets in the solar system combined.',
+      'image': 'https://media.stsci.edu/uploads/story/thumbnail/1178/low_STSCI-H-p1715a-t-400x400.png',
+    },(err) => {
+        if (err) {
+          console.error(err)
+          msg.say(err)
+        }
+
+    })
     msg.say({
       text: '',
       "attachments": [
