@@ -81,6 +81,17 @@ module.exports = (server, db) => {
   })
 
   app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
+     db.saveSpaceImages( {
+      'title': "Core of the Crab Nebula",
+      'text': 'Peering deep into the core of the Crab Nebula, this close-up image reveals the beating heart of one of the most historic and intensively studied remnants of a supernova, an exploding star.',
+      'image': 'https://media.stsci.edu/uploads/image/display_image/3760/low_xlarge_web.jpg',
+    },(err) => {
+        if (err) {
+          console.error(err)
+          msg.say(err)
+        }
+
+    })
     // Pull from database space images and captions
     db.getRandomSpaceImage((err, spaceImage) => {
         if (err) {
