@@ -99,7 +99,7 @@ module.exports = (server, db) => {
         }
         var i = 0;
         var random = Math.floor(Math.random() * spaceImages.length);
-        msg.say(random)
+        msg.say(spaceImages.length)
         for(let index in spaceImages)
         {
           if (i == random)
