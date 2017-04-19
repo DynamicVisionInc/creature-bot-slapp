@@ -98,8 +98,12 @@ module.exports = (server, db) => {
           console.error(err)
         }
         var i = 0;
-        var random = Math.floor(Math.random() * spaceImages.length);
-        msg.say(spaceImages.length)
+
+        spaceImages.$loaded().then(function(spaceImages) {
+          var random = Math.floor(Math.random() * spaceImages.length)
+          msg.say(spaceImages.length)
+        });
+
         for(let index in spaceImages)
         {
           if (i == random)
