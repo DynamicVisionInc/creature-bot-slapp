@@ -97,7 +97,7 @@ module.exports = (server, db) => {
         if (err) {
           console.error(err)
         }
-        console.log spaceImages
+        console.log(spaceImages)
         msg.say({
               text: '',
               "attachments": [
