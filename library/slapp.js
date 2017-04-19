@@ -80,6 +80,7 @@ module.exports = (server, db) => {
     })
   })
 
+  //
   app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
     // Pull from database space images and captions
     db.getRandomSpaceImage((err, spaceImage) => {
@@ -93,7 +94,7 @@ module.exports = (server, db) => {
             {
                 "fallback": spaceImage.title,
                 "color": "#36a64f",
-                "pretext": "Here is an image of something in space.",
+                "pretext": "Here is an image of something in space.  Tell me some words or phrases that come to mind when you look at this picture?",
                 "author_name": "",
                 "author_link": "http://flickr.com/bobby/",
                 "author_icon": "http://flickr.com/icons/bobby.jpg",
@@ -105,7 +106,13 @@ module.exports = (server, db) => {
             }
           ]
         })
+        .route('space_response')
     })
+  })
+
+  app.route('space_response', (msg, state) => {
+    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+
   })
 
   app.message('spaceAdd', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
