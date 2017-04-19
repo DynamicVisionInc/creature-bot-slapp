@@ -128,14 +128,17 @@ module.exports = (server, db) => {
         }
         var i = 0;
         var random = Math.floor(Math.random() * spaceImages.length);
-        spaceImages.forEach( function(spaceImage) {
+        for(let index in spaceImages)
+        {
           if (i == random)
           {
-            var givenSpaceImage = spaceImage
+            var givenSpaceImage = spaceImages[index]
             msg.say(givenSpaceImage)
           }
           i++;
-        });
+        }
+
+
     })
     // Setup the attachment for the response
 
