@@ -93,25 +93,15 @@ module.exports = (server, db) => {
             {
                 "fallback": spaceImage.title,
                 "color": "#36a64f",
-                "pretext": "Optional text that appears above the attachment block",
+                "pretext": "Here is an image of something in space.",
                 "author_name": "",
                 "author_link": "http://flickr.com/bobby/",
                 "author_icon": "http://flickr.com/icons/bobby.jpg",
                 "title": spaceImage.title,
                 "title_link": "",
                 "text": spaceImage.text,
-                "fields": [
-                    {
-                        "title": "Priority",
-                        "value": "High",
-                        "short": false
-                    }
-                ],
                 "image_url": spaceImage.image,
                 "thumb_url": spaceImage.image,
-                "footer": "",
-                "footer_icon": "",
-                "ts": 123456789
             }
           ]
         })
@@ -122,9 +112,9 @@ module.exports = (server, db) => {
     msg.say('Before store.')
     // Pull from database space images and captions
     db.saveSpaceImages( {
-      'title': "NASA's Hubble Takes Close-up Portrait of Jupiter",
-      'text': 'The planet Jupiter is the fifth planet out from the Sun, and is two and a half times more massive than all the other planets in the solar system combined.',
-      'image': 'https://media.stsci.edu/uploads/story/thumbnail/1178/low_STSCI-H-p1715a-t-400x400.png',
+      'title': "Core of the Crab Nebula",
+      'text': 'Peering deep into the core of the Crab Nebula, this close-up image reveals the beating heart of one of the most historic and intensively studied remnants of a supernova, an exploding star.',
+      'image': 'https://media.stsci.edu/uploads/image/display_image/3760/low_xlarge_web.jpg',
     },(err) => {
         if (err) {
           console.error(err)
