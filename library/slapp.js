@@ -127,7 +127,7 @@ module.exports = (server, db) => {
           console.error(err)
         }
         var i = 0;
-        var random = Math.floor(Math.random() * count(spaceImages));
+        var random = Math.floor(Math.random() * spaceImages.length());
         spaceImages.forEach( function(spaceImage) {
           if (i == random)
           {
