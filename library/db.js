@@ -98,6 +98,20 @@ module.exports = () => {
       }, done)
     },
 
+    getRandomSpaceImage (done) {
+      database.ref(`spaceImages/`).once('value', (snapshot) => {
+        var i = 0;
+        var rand = Math.floor(Math.random() * snapshot.numChildren());
+        snapshot.forEach(function(snapshot) {
+          if (i == rand) {
+            console.log snapshot.val()
+            done(null, snapshot.val())
+          }
+          i++;
+        });
+      }, done)
+    }
+
     deleteSpaceImages (id, done) {
       database.ref(`spaceImages/${id}`).remove(done)
     },

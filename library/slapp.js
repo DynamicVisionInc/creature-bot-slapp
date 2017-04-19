@@ -93,25 +93,12 @@ module.exports = (server, db) => {
     // })
 
     // Pull from database space images and captions
-    db.getSpaceImages((err, spaceImages) => {
+    db.getRandomSpaceImage((err, spaceImages) => {
         if (err) {
           console.error(err)
         }
-        var i = 0;
-
-        spaceImages.$loaded().then(function(spaceImages) {
-          var random = Math.floor(Math.random() * spaceImages.length)
-          msg.say(spaceImages.length)
-        });
-
-        for(let index in spaceImages)
-        {
-          if (i == random)
-          {
-            var givenSpaceImage = spaceImages[index]
-            msg.say(givenSpaceImage)
-
-            msg.say({
+        console.log spaceImages
+        msg.say({
               text: '',
               "attachments": [
                 {
@@ -139,10 +126,6 @@ module.exports = (server, db) => {
                 }
               ]
             })
-          }
-
-          i++;
-        }
 
 
     })
