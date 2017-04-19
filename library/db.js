@@ -83,7 +83,7 @@ module.exports = () => {
 
     // Space images CRUD
     saveSpaceImages (data, done) {
-      database.ref(`spaceImages`).push(data, (err) => {
+      database.ref(`spaceImages/`).push(data, (err) => {
         if (err) {
           return done(err)
         }
@@ -93,7 +93,7 @@ module.exports = () => {
     },
 
     getSpaceImages (done) {
-      database.ref(`spaceImages`).once('value', (snapshot) => {
+      database.ref(`spaceImages/`).once('value', (snapshot) => {
         done(null, snapshot.val())
       }, done)
     },
