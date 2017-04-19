@@ -77,10 +77,36 @@ module.exports = (server, db) => {
             "ts": 123456789
         }
       ]
-      })
-    msg.say(['<https://media.stsci.edu/uploads/story/thumbnail/1178/low_STSCI-H-p1715a-t-400x400.png>'])
+    })
   })
 
+  app.message('space', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
+    // Pull from database space images and captions
+    db.getSpaceImages((err, spaceImages) => {
+        if (err) {
+          console.error(err)
+        }
+
+    })
+    // Setup the attachment for the response
+
+  })
+
+  app.message('spaceAdd', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
+    // Pull from database space images and captions
+    db.saveSpaceImages( {
+      'title': "NASA's Hubble Takes Close-up Portrait of Jupiter",
+      'text': 'The planet Jupiter is the fifth planet out from the Sun, and is two and a half times more massive than all the other planets in the solar system combined.',
+      'image': 'https://media.stsci.edu/uploads/story/thumbnail/1178/low_STSCI-H-p1715a-t-400x400.png',
+    },(err, spaceImages) => {
+        if (err) {
+          console.error(err)
+        }
+
+    })
+    // Setup the attachment for the response
+
+  })
 
   app.message('test', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
     msg

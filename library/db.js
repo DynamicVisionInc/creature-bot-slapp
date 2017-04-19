@@ -34,7 +34,7 @@ module.exports = () => {
 
     // Conversation CRUD
     saveConvo (id, data, done) {
-      database.ref(`convos/${id}`).push(data, (err) => {
+      database.ref(`conversations/${id}`).push(data, (err) => {
         if (err) {
           return done(err)
         }
@@ -44,13 +44,13 @@ module.exports = () => {
     },
 
     getConvo (id, done) {
-      database.ref(`convos/${id}`).once('value', (snapshot) => {
+      database.ref(`conversations/${id}`).once('value', (snapshot) => {
         done(null, snapshot.val())
       }, done)
     },
 
     deleteConvo (id, done) {
-      database.ref(`convos/${id}`).remove(done)
+      database.ref(`conversations/${id}`).remove(done)
     },
 
     // Motivations CRUD
@@ -79,7 +79,28 @@ module.exports = () => {
       database.ref(`user/${id}/experience`).transaction( (current_value) => {
         return (current_value || 0) + 1
       }, done)
-    }
+    },
+
+    // Space images CRUD
+    saveSpaceImages (id, data, done) {
+      database.ref(`spaceImages`).push(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
+
+    getSpaceImages (done) {
+      database.ref(`spaceImages`).once('value', (snapshot) => {
+        done(null, snapshot.val())
+      }, done)
+    },
+
+    deleteSpaceImages (id, done) {
+      database.ref(`spaceImages/${id}`).remove(done)
+    },
 
   }
 }
