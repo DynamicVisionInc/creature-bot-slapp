@@ -104,7 +104,7 @@ module.exports = () => {
         var rand = Math.floor(Math.random() * snapshot.numChildren());
         snapshot.forEach(function(snapshot) {
           if (i == rand) {
-            console.log snapshot.val()
+            console.log(snapshot.val())
             done(null, snapshot.val())
           }
           i++;
