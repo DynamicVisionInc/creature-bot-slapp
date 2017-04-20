@@ -43,7 +43,7 @@ module.exports = (server, db) => {
 
 
   // Space Image
-  app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
+  app.route('space', ['direct_mention', 'direct_message'], (msg, text) => {
     // Code used to inject space images and facts.
     // db.saveSpaceImages( {
     //   'title': "Core of the Crab Nebula",
