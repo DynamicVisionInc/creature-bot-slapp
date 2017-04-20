@@ -59,6 +59,15 @@ module.exports = (server, db) => {
     }
     console.log(color)
     msg.say(color)
+      .say({
+          text: '',
+          "attachments": [
+            {
+                "fallback": 'Color goes here',
+                "color": color,
+            }
+          ]
+        })
   })
 
   app.route('color_response', (msg, text) => {
