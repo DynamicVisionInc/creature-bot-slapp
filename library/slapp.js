@@ -38,7 +38,8 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg.route('space')
+    msg.say('routing now')
+    .route('space')
   })
 
 
