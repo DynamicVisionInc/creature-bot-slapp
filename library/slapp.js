@@ -51,7 +51,7 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
-    var random_index = Math.floor(Math.random() * inspire_routes.length)
+    var random_index = Math.floor(Math.random() * inspire_routes.length) - 1
     var route_choosen = inspire_routes[random_index]
     console.log(random_index)
     msg.route(route_choosen)
