@@ -47,6 +47,10 @@ module.exports = (server, db) => {
     msg.route(route_choosen)
   })
 
+  app.message('new game', ['direct_mention', 'direct_message'], (msg, text) => {
+    msg.say('#36a64f')
+  })
+
   //*********************************************
   // Begin Color Name Game
   //*********************************************
