@@ -53,7 +53,7 @@ module.exports = (server, db) => {
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)]
     }
-    var color = Helper.getRandomColor()
+    var color = new Helper.getRandomColor()
     console.log(color)
     msg.say(color)
   })
