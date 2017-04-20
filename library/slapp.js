@@ -50,7 +50,11 @@ module.exports = (server, db) => {
 
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
     //
-    var color = Helper.getRandomColor()
+    var letters = '0123456789ABCDEF'
+    var color = '#'
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)]
+    }
     console.log(color)
     msg.say(color)
 
