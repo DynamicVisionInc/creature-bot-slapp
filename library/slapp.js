@@ -51,12 +51,12 @@ module.exports = (server, db) => {
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
     //
     var letters = '0123456789ABCDEF'
-    var color = '#'
+    var color_choosen = '#'
     for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)]
+      color_choosen += letters[Math.floor(Math.random() * 16)]
     }
-    console.log(color)
-    msg.say(color)
+    console.log(color_choosen)
+    msg.say(color_choosen)
 
   })
 
