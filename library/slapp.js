@@ -51,8 +51,10 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
-    var route_choosen = inspire_routes[Math.floor(Math.random() * inspire_routes.length)]
+    var random_index = Math.floor(Math.random() * inspire_routes.length)
+    var route_choosen = inspire_routes[random_index]
     msg.say(route_choosen)
+      .say(random_index)
       .route(route_choosen)
   })
 
@@ -67,7 +69,6 @@ module.exports = (server, db) => {
       color += letters[Math.floor(Math.random() * 16)]
     }
     var color_image_url = 'https://dummyimage.com/100x100/' + color + '/' + color + '.jpg'
-    console.log(color)
     msg.say('Give this color a unique name?')
       .say({
         text: '',
