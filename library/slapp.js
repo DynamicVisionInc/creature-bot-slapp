@@ -53,21 +53,28 @@ module.exports = (server, db) => {
   //*********************************************
   app.message('color', ['direct_mention', 'direct_message'], (msg, text) => {
     var letters = '0123456789ABCDEF'
-    var color = '#'
+    var color = ''
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)]
     }
+    var color_image_url = 'https://dummyimage.com/50x50/' + color + '.jpg'
     console.log(color)
     msg.say(color)
       .say({
-          text: '',
-          "attachments": [
-            {
-                "fallback": 'Color goes here',
-                "color": color,
-            }
-          ]
-        })
+        text: '',
+        "attachments": [
+          {
+              "fallback": color,
+              "color": color,
+              "pretext": "",
+              "title": color,
+              "title_link": "",
+              "text": color,
+              "image_url": color_image_url,
+              "thumb_url": color_image_url,
+          }
+        ]
+      })
   })
 
   app.route('color_response', (msg, text) => {
