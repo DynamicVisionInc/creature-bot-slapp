@@ -3,7 +3,7 @@
 const Slapp = require('slapp')
 const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
-var Helper = require('./helper.js')
+const Helper = require('./helper.js')
 
 var inspire_routes = [
   'space_route'
@@ -47,19 +47,31 @@ module.exports = (server, db) => {
     msg.route(route_choosen)
   })
 
-
+  //*********************************************
+  // Begin Color Name Game
+  //*********************************************
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
-    //
-    var letters = '0123456789ABCDEF';
-    var color = 'This works';
-    // for (var i = 0; i < 6; i++ ) {
-    //     color += letters[Math.floor(Math.random() * 16)];
-    // }
+    // Get random color to display
+    var color = Helper.getRandomColor()
     console.log(color)
-    msg.say(color)
+    msg.say({
+          text: '',
+          "attachments": [
+            {
+                "fallback": 'Name that color.',
+                "color": "#36a64f",
+            }
+          ]
+        })
 
   })
 
+  app.route('color_response', (msg, text) => {
+
+  })
+  //*********************************************
+  // End Color Name Game
+  //*********************************************
 
 
   //*********************************************
