@@ -48,6 +48,12 @@ module.exports = (server, db) => {
   })
 
   app.message('new game', ['direct_mention', 'direct_message'], (msg, text) => {
+    var letters = '0123456789ABCDEF'
+    var color = '#'
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)]
+    }
+    console.log(color)
     msg.say('#36a64f')
   })
 
@@ -56,12 +62,12 @@ module.exports = (server, db) => {
   //*********************************************
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
     // Get random color to display
-    // var letters = '0123456789ABCDEF'
-    // var color = '#'
-    // for (var i = 0; i < 6; i++) {
-    //   color += letters[Math.floor(Math.random() * 16)]
-    // }
-    // console.log(color)
+    var letters = '0123456789ABCDEF'
+    var color = '#'
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)]
+    }
+    console.log(color)
     msg.say("#36a64f")
   })
 
