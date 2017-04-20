@@ -3,7 +3,7 @@
 const Slapp = require('slapp')
 const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
-const Helper = require('./helper.js')
+// var Helper = require('./helper.js')
 
 var inspire_routes = [
   'space_route'
@@ -52,8 +52,12 @@ module.exports = (server, db) => {
   //*********************************************
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
     // Get random color to display
-    // var color = Helper.getRandomColor()
-    // console.log(color)
+    var letters = '0123456789ABCDEF'
+    var color = '#'
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)]
+    }
+    console.log(color)
     msg.say("#36a64f")
   })
 
