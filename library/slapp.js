@@ -58,7 +58,7 @@ module.exports = (server, db) => {
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)]
     }
-    var color_image_url = 'https://dummyimage.com/100x100/' + color + '.jpg'
+    var color_image_url = 'https://dummyimage.com/100x100/' + color + '/' + color + '.jpg'
     console.log(color)
     msg.say('Give this color a unique name?')
       .say({
