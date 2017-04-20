@@ -47,21 +47,19 @@ module.exports = (server, db) => {
     msg.route(route_choosen)
   })
 
-  app.message('new game', ['direct_mention', 'direct_message'], (msg, text) => {
+
+  //*********************************************
+  // Begin Color Name Game
+  //*********************************************
+  app.message('color', ['direct_mention', 'direct_message'], (msg, text) => {
     var letters = '0123456789ABCDEF'
     var color = '#'
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)]
     }
-    var color = new Helper.getRandomColor()
     console.log(color)
     msg.say(color)
   })
-
-  //*********************************************
-  // Begin Color Name Game
-  //*********************************************
-
 
   app.route('color_response', (msg, text) => {
 

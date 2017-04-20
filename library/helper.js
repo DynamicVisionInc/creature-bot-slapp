@@ -2,16 +2,18 @@
 
 module.exports = () => {
 
-	// Retrieve a random color
-	this.getRandomColor = function() {
-		var letters = '0123456789ABCDEF'
-		var color = '#'
-		for (var i = 0; i < 6; i++) {
-			color += letters[Math.floor(Math.random() * 16)]
-		}
-		return color
-	}
 
 	return {
+
+		// Retrieve a random color
+		getRandomColor {
+			var letters = '0123456789ABCDEF'
+			var color = '#'
+			for (var i = 0; i < 6; i++) {
+				color += letters[Math.floor(Math.random() * 16)]
+			}
+			return color
+		}
+
 	}
 }
