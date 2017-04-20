@@ -3,9 +3,10 @@
 const Slapp = require('slapp')
 const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
+const Helper = require('helper')
 
-var inspire = [
-  'space'
+var inspire_routes = [
+  'space_route'
   ];
 
 module.exports = (server, db) => {
@@ -42,13 +43,24 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
-    var route_choosen = inspire[Math.floor(Math.random() * inspire.length)]
+    var route_choosen = inspire_routes[Math.floor(Math.random() * inspire_routes.length)]
     msg.route(route_choosen)
   })
 
 
-  // Space Image
-  app.route('space', (msg, text) => {
+  app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
+    //
+    var color = Helper.getRandomColor()
+    msg.say(color)
+
+  })
+
+
+
+  //*********************************************
+  // Begin Space Image Game
+  //*********************************************
+  app.route('space_route', (msg, text) => {
     // Code used to inject space images and facts.
     // db.saveSpaceImages( {
     //   'title': "Core of the Crab Nebula",
@@ -99,19 +111,9 @@ module.exports = (server, db) => {
     msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
 
   })
-
-  app.message('test', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
-    msg
-      .say(`How are you?`)
-      .route('handleHowAreYou')  // where to route the next msg in the conversation
-  })
-
-  // register a route handler
-  app.route('handleHowAreYou', (msg) => {
-    // respond with a random entry from array
-    msg.say(['Me too', 'Noted', 'That is interesting'])
-  })
-
+  //*********************************************
+  // End Space Image Game
+  //*********************************************
 
 
   app
