@@ -6,8 +6,8 @@ const ConvoStore = require('slapp-convo-beepboop')
 var Helper = require('./helper.js')
 
 var inspire_routes = [
-    'space_route',
-    'color_route'
+    'color_route',
+    'space_route'
   ];
 
 module.exports = (server, db) => {
@@ -25,11 +25,15 @@ module.exports = (server, db) => {
     {
       // Save message sent to Creature-bot
       db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
-        console.log(err)
+        if (err)
+        {
+          console.log(err)
+        }
       })
       // Increase user experience
       db.increaseExperience(msg.body.event.user, (err) => {
-        if (err) {
+        if (err)
+        {
           console.log(err)
         }
       })
