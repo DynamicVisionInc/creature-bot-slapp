@@ -6,7 +6,8 @@ const ConvoStore = require('slapp-convo-beepboop')
 var Helper = require('./helper.js')
 
 var inspire_routes = [
-  'space_route'
+    'space_route',
+    'color_route'
   ];
 
 module.exports = (server, db) => {
@@ -51,7 +52,7 @@ module.exports = (server, db) => {
   //*********************************************
   // Begin Color Name Game
   //*********************************************
-  app.message('color', ['direct_mention', 'direct_message'], (msg, text) => {
+  app.route('color_route', (msg, text) => {
     var letters = '0123456789ABCDEF'
     var color = ''
     for (var i = 0; i < 6; i++) {
@@ -59,7 +60,7 @@ module.exports = (server, db) => {
     }
     var color_image_url = 'https://dummyimage.com/50x50/' + color + '.jpg'
     console.log(color)
-    msg.say(color)
+    msg.say('Give this color a unique name?')
       .say({
         text: '',
         "attachments": [
@@ -78,7 +79,7 @@ module.exports = (server, db) => {
   })
 
   app.route('color_response', (msg, text) => {
-
+    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
   })
   //*********************************************
   // End Color Name Game
