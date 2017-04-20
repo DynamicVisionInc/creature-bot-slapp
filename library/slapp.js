@@ -23,8 +23,15 @@ module.exports = (server, db) => {
   app.use((msg, next) => {
     if (msg.body.event.user)
     {
+      // Save message sent to Creature-bot
       db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
         console.log(err)
+      })
+      // Increase user experience
+      db.increaseExperience(msg.body.event.user, (err) => {
+        if (err) {
+          console.log(err)
+        }
       })
     }
     next()
@@ -45,7 +52,8 @@ module.exports = (server, db) => {
 
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
     var route_choosen = inspire_routes[Math.floor(Math.random() * inspire_routes.length)]
-    msg.route(route_choosen)
+    msg.say(route_choosen)
+      .route(route_choosen)
   })
 
 
@@ -102,13 +110,6 @@ module.exports = (server, db) => {
     //       msg.say(err)
     //     }
     // })
-
-    // Increase user experience
-    db.increaseExperience(msg.body.event.user, (err) => {
-      if (err) {
-        console.log(err)
-      }
-    })
     // Pull from database space images and captions
     db.getRandomSpaceImage((err, spaceImage) => {
         if (err) {
