@@ -54,16 +54,7 @@ module.exports = (server, db) => {
     // Get random color to display
     var color = Helper.getRandomColor()
     console.log(color)
-    msg.say({
-          text: '',
-          "attachments": [
-            {
-                "fallback": 'Name that color.',
-                "color": "#36a64f",
-            }
-          ]
-        })
-
+    msg.say("#36a64f")
   })
 
   app.route('color_response', (msg, text) => {
