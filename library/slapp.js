@@ -58,7 +58,7 @@ module.exports = (server, db) => {
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)]
     }
-    var color_image_url = 'https://dummyimage.com/50x50/' + color + '.jpg'
+    var color_image_url = 'https://dummyimage.com/100x100/' + color + '.jpg'
     console.log(color)
     msg.say('Give this color a unique name?')
       .say({
@@ -67,15 +67,16 @@ module.exports = (server, db) => {
           {
               "fallback": color,
               "color": color,
-              "pretext": "",
-              "title": color,
-              "title_link": "",
-              "text": color,
+              "pretext": '',
+              "title": '',
+              "title_link": '',
+              "text": '',
               "image_url": color_image_url,
               "thumb_url": color_image_url,
           }
         ]
       })
+      .route('color_response')
   })
 
   app.route('color_response', (msg, text) => {
