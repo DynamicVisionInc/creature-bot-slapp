@@ -4,6 +4,10 @@ const Slapp = require('slapp')
 const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
 
+var inspire = [
+  'space'
+  ];
+
 module.exports = (server, db) => {
   let app = Slapp({
     verify_token: process.env.SLACK_VERIFY_TOKEN,
@@ -38,8 +42,8 @@ module.exports = (server, db) => {
 //*********************************************
 
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg.say('routing now')
-    .route('space')
+    var route_choosen = inspire[Math.floor(Math.random() * inspire.length)]
+    msg.route(route_choosen)
   })
 
 
