@@ -51,7 +51,7 @@ module.exports = (server, db) => {
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
     //
     var letters = '0123456789ABCDEF';
-    var color = '#';
+    var color = 'This works';
     // for (var i = 0; i < 6; i++ ) {
     //     color += letters[Math.floor(Math.random() * 16)];
     // }
