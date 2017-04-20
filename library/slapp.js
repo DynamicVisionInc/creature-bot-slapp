@@ -52,8 +52,8 @@ module.exports = (server, db) => {
   //*********************************************
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
     // Get random color to display
-    var color = Helper.getRandomColor()
-    console.log(color)
+    // var color = Helper.getRandomColor()
+    // console.log(color)
     msg.say("#36a64f")
   })
 
