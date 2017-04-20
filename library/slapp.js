@@ -37,51 +37,31 @@ module.exports = (server, db) => {
 // Setup different handlers for messages
 //*********************************************
 
-  app.message('store', ['mention', 'direct_message'], (msg, text, greeting) => {
+  app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
+    msg.route('space')
+  })
+
+
+  // Space Image
+  app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
+    // Code used to inject space images and facts.
+    // db.saveSpaceImages( {
+    //   'title': "Core of the Crab Nebula",
+    //   'text': 'Peering deep into the core of the Crab Nebula, this close-up image reveals the beating heart of one of the most historic and intensively studied remnants of a supernova, an exploding star.',
+    //   'image': 'https://media.stsci.edu/uploads/image/display_image/3760/low_xlarge_web.jpg',
+    // },(err) => {
+    //     if (err) {
+    //       console.error(err)
+    //       msg.say(err)
+    //     }
+    // })
+
+    // Increase user experience
     db.increaseExperience(msg.body.event.user, (err) => {
       if (err) {
         console.log(err)
       }
     })
-    msg
-      .say(`Conversation model stored!`)
-      .route('store_step_2')
-  })
-
-  app.route('store_step_2', (msg, state) => {
-    var text = (msg.body.event && msg.body.event.text) || ''
-    msg.say({
-      text: '',
-      "attachments": [
-        {
-            "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "pretext": "Optional text that appears above the attachment block",
-            "author_name": "Bobby Tables",
-            "author_link": "http://flickr.com/bobby/",
-            "author_icon": "http://flickr.com/icons/bobby.jpg",
-            "title": "Slack API Documentation",
-            "title_link": "https://api.slack.com/",
-            "text": "Optional text that appears within the attachment",
-            "fields": [
-                {
-                    "title": "Priority",
-                    "value": "High",
-                    "short": false
-                }
-            ],
-            "image_url": "https://media.stsci.edu/uploads/story/thumbnail/1178/low_STSCI-H-p1715a-t-400x400.png",
-            "thumb_url": "https://media.stsci.edu/uploads/story/thumbnail/1178/low_STSCI-H-p1715a-t-400x400.png",
-            "footer": "Slack API",
-            "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-            "ts": 123456789
-        }
-      ]
-    })
-  })
-
-  //
-  app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
     // Pull from database space images and captions
     db.getRandomSpaceImage((err, spaceImage) => {
         if (err) {
@@ -112,23 +92,6 @@ module.exports = (server, db) => {
 
   app.route('space_response', (msg, state) => {
     msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
-
-  })
-
-  app.message('spaceAdd', ['direct_mention', 'direct_message'], (msg, text, greeting) => {
-    msg.say('Before store.')
-    // Pull from database space images and captions
-    db.saveSpaceImages( {
-      'title': "Core of the Crab Nebula",
-      'text': 'Peering deep into the core of the Crab Nebula, this close-up image reveals the beating heart of one of the most historic and intensively studied remnants of a supernova, an exploding star.',
-      'image': 'https://media.stsci.edu/uploads/image/display_image/3760/low_xlarge_web.jpg',
-    },(err) => {
-        if (err) {
-          console.error(err)
-          msg.say(err)
-        }
-
-    })
 
   })
 
