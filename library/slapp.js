@@ -3,7 +3,7 @@
 const Slapp = require('slapp')
 const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
-const Helper = require('helper')
+var Helper = require('helper')
 
 var inspire_routes = [
   'space_route'
