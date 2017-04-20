@@ -54,7 +54,7 @@ module.exports = (server, db) => {
       color += letters[Math.floor(Math.random() * 16)]
     }
     console.log(color)
-    msg.say('#36a64f')
+    msg.say(color)
   })
 
   //*********************************************
