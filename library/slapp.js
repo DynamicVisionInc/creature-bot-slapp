@@ -51,6 +51,7 @@ module.exports = (server, db) => {
   app.message('color', ['direction_mention', 'direct_message'], (msg, text) => {
     //
     var color = Helper.getRandomColor()
+    console.log(color)
     msg.say(color)
 
   })
@@ -322,9 +323,9 @@ module.exports = (server, db) => {
     .message('fix it', 'ambient', (msg) => {
       msg.say('https://www.youtube.com/watch?v=yo3uxqwTxk0')
     })
-    .message(/.*/, 'mention', (msg) => {
-      msg.say('You really do care about me. :heart:')
-    })
+    // .message(/.*/, 'mention', (msg) => {
+    //   msg.say('You really do care about me. :heart:')
+    // })
 
     app.attachToExpress(server)
 
