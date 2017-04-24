@@ -18,8 +18,9 @@ module.exports = (server, db) => {
   })
 
 
-
+  //*********************************************
   // Middleware
+  //*********************************************
   app.use((msg, next) => {
     if (msg.body.event.user)
     {
@@ -54,6 +55,9 @@ module.exports = (server, db) => {
 // Setup different handlers for messages
 //*********************************************
 
+  //*********************************************
+  // Inspire Handler
+  //*********************************************
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
     var random_index = Math.floor(Math.random() * inspire_routes.length)
     var route_choosen = inspire_routes[random_index]
@@ -103,6 +107,10 @@ module.exports = (server, db) => {
   //*********************************************
   // Begin Space Image Game
   //*********************************************
+  app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
+    msg.route('space_route')
+  })
+
   app.route('space_route', (msg, text) => {
     // Code used to inject space images and facts.
     // db.saveSpaceImages( {
