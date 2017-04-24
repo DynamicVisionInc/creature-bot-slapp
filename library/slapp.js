@@ -109,16 +109,16 @@ module.exports = (server, db) => {
   //*********************************************
   app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
     // Code used to inject space images and facts.
-    db.saveSpaceImages( {
-      'title': "Hubble Sees a Cosmic Caterpillar",
-      'text': 'This light-year-long knot of interstellar gas and dust resembles a caterpillar on its way to a feast.',
-      'image': 'https://media.stsci.edu/uploads/story/display_image/1005/low_keystone.png',
-    },(err) => {
-        if (err) {
-          console.error(err)
-          msg.say(err)
-        }
-    })
+    // db.saveSpaceImages( {
+    //   'title': "Hubble Sees a Cosmic Caterpillar",
+    //   'text': 'This light-year-long knot of interstellar gas and dust resembles a caterpillar on its way to a feast.',
+    //   'image': 'https://media.stsci.edu/uploads/story/display_image/1005/low_keystone.png',
+    // },(err) => {
+    //     if (err) {
+    //       console.error(err)
+    //       msg.say(err)
+    //     }
+    // })
     msg.route('space_route')
   })
 
