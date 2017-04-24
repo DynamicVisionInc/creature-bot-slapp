@@ -108,21 +108,21 @@ module.exports = (server, db) => {
   // Begin Space Image Game
   //*********************************************
   app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
+    // Code used to inject space images and facts.
+    db.saveSpaceImages( {
+      'title': "Some Planetary Nebulae Have Bizarre Alignment to Our Galaxy",
+      'text': 'Those nebulae that are butterfly-shaped or hourglass-shaped tend to be mysteriously aligned such that their rotation axis is perpendicular to the plane of our galaxy.',
+      'image': 'https://media.stsci.edu/uploads/story/display_image/1007/low_keystone.png',
+    },(err) => {
+        if (err) {
+          console.error(err)
+          msg.say(err)
+        }
+    })
     msg.route('space_route')
   })
 
   app.route('space_route', (msg, text) => {
-    // Code used to inject space images and facts.
-    // db.saveSpaceImages( {
-    //   'title': "Core of the Crab Nebula",
-    //   'text': 'Peering deep into the core of the Crab Nebula, this close-up image reveals the beating heart of one of the most historic and intensively studied remnants of a supernova, an exploding star.',
-    //   'image': 'https://media.stsci.edu/uploads/image/display_image/3760/low_xlarge_web.jpg',
-    // },(err) => {
-    //     if (err) {
-    //       console.error(err)
-    //       msg.say(err)
-    //     }
-    // })
     // Pull from database space images and captions
     db.getRandomSpaceImage((err, spaceImage) => {
         if (err) {
