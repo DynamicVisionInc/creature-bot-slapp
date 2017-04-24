@@ -109,16 +109,16 @@ module.exports = (server, db) => {
   //*********************************************
   app.message('space', ['direct_mention', 'direct_message'], (msg, text) => {
     // Code used to inject space images and facts.
-    db.saveSpaceImages( {
-      'title': "Some Planetary Nebulae Have Bizarre Alignment to Our Galaxy",
-      'text': 'Those nebulae that are butterfly-shaped or hourglass-shaped tend to be mysteriously aligned such that their rotation axis is perpendicular to the plane of our galaxy.',
-      'image': 'https://media.stsci.edu/uploads/story/display_image/1007/low_keystone.png',
-    },(err) => {
-        if (err) {
-          console.error(err)
-          msg.say(err)
-        }
-    })
+    // db.saveSpaceImages( {
+    //   'title': "Some Planetary Nebulae Have Bizarre Alignment to Our Galaxy",
+    //   'text': 'Those nebulae that are butterfly-shaped or hourglass-shaped tend to be mysteriously aligned such that their rotation axis is perpendicular to the plane of our galaxy.',
+    //   'image': 'https://media.stsci.edu/uploads/story/display_image/1007/low_keystone.png',
+    // },(err) => {
+    //     if (err) {
+    //       console.error(err)
+    //       msg.say(err)
+    //     }
+    // })
     msg.route('space_route')
   })
 
