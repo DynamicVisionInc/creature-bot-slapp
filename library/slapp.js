@@ -93,6 +93,23 @@ module.exports = (server, db) => {
       }
       // Select randomly from array of skills not done
       var route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
+      // If all skills have been done, loop through skills and set to undone and push all skills to skills_choosen
+      if (route_choosen == null)
+      {
+        for (var key in skills)
+        {
+          if (skills.hasOwnProperty(key))
+          {
+            skills[key] = 0
+            skills_choosen.push(key)
+          }
+        }
+        // Store the now updated skill object
+        db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
+          console.log(err)
+        })
+        route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
+      }
       skills[route_choosen] = 1
 
       db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
