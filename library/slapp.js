@@ -111,7 +111,7 @@ module.exports = (server, db) => {
   //*********************************************
   app.route('color_route', (msg, text) => {
 
-    color = Helper.getRandomColor()
+    var color = Helper.getRandomColor()
 
     var color_image_url = 'https://dummyimage.com/100x100/' + color + '/' + color + '.jpg'
     msg.say('Give this color a unique name?')
