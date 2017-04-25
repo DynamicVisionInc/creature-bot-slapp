@@ -49,8 +49,8 @@ function getInspireRoute (db, msg) {
 			console.log(err)
 		})
 		console.log(route_choosen)
-		return route_choosen
 	})
+	return route_choosen
 }
 
 module.exports = {
