@@ -110,6 +110,7 @@ module.exports = (server, db) => {
         })
         route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
       }
+
       skills[route_choosen] = 1
 
       db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
