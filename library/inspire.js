@@ -50,9 +50,9 @@ function getInspireRoute (db, msg) {
 			console.log(err)
 		})
 		console.log(route_choosen)
+		msg.say(route_choosen)
+			.route(route_choosen + "_route")
 	})
-	console.log(route_choosen)
-	return 'color'
 }
 
 module.exports = {
