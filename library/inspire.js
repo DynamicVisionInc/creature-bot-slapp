@@ -1,6 +1,6 @@
 'use strict'
 
-function getInspireRoute (db) {
+function getInspireRoute (db, msg) {
 				// Get object of skills
 	db.getInspireSkills(msg.body.event.user, (err, inspire_skills) => {
 		if (err) {

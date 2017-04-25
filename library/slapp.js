@@ -55,7 +55,7 @@ module.exports = (server, db) => {
   // Inspire Handler
   //*********************************************
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
-    var route_choosen = Inspire.getInspireRoute(db)
+    var route_choosen = Inspire.getInspireRoute(db, msg)
     console.log(route_choosen)
     msg.say(route_choosen)
       .route(route_choosen + "_route")
