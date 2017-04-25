@@ -71,11 +71,15 @@ module.exports = (server, db) => {
   // Begin Color Name Game
   //*********************************************
   app.route('color_route', (msg, text) => {
-    var letters = '0123456789ABCDEF'
-    var color = ''
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)]
-    }
+
+    // var letters = '0123456789ABCDEF'
+    // var color = ''
+    // for (var i = 0; i < 6; i++) {
+    //   color += letters[Math.floor(Math.random() * 16)]
+    // }
+
+    color = Helper.getRandomColor()
+
     var color_image_url = 'https://dummyimage.com/100x100/' + color + '/' + color + '.jpg'
     msg.say('Give this color a unique name?')
       .say({
