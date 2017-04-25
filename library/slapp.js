@@ -75,9 +75,6 @@ module.exports = (server, db) => {
             'color' : 0,
             'space' : 0
           }
-        db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
-          console.log(err)
-        })
       }
       // Create array of skills not done
       var skills_choosen = []
@@ -102,10 +99,6 @@ module.exports = (server, db) => {
             skills_choosen.push(key)
           }
         }
-        // Store the now updated skill object
-        db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
-          console.log(err)
-        })
       }
       // Select randomly from array of skills not done
       var route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
