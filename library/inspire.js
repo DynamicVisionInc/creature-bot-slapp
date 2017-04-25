@@ -1,7 +1,8 @@
 'use strict'
 
 function getInspireRoute (db, msg) {
-				// Get object of skills
+	var route_choosen
+	// Get object of skills
 	db.getInspireSkills(msg.body.event.user, (err, inspire_skills) => {
 		if (err) {
 			console.error(err)
@@ -41,7 +42,7 @@ function getInspireRoute (db, msg) {
 			}
 		}
 		// Select randomly from array of skills not done
-		var route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
+		route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
 
 		skills[route_choosen] = 1
 		// Store changes made to the skills done
