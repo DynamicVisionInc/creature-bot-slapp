@@ -3,8 +3,8 @@
 const Slapp = require('slapp')
 const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
-var Helper = require('./helper.js')
-var Inspire = require('./inspire.js')
+const Helper = require('./helper.js')
+const Inspire = require('inspire')
 
 module.exports = (server, db) => {
   let app = Slapp({

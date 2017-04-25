@@ -55,7 +55,7 @@ module.exports = () => {
 				console.log(route_choosen)
 				return route_choosen
 			})
-		}
+		},
 
 	}
 }
