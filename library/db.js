@@ -115,6 +115,25 @@ module.exports = () => {
       database.ref(`spaceImages/${id}`).remove(done)
     },
 
+    // Inspire Skills CRUD
+    getInspireSkills (id, done) {
+      database.ref(`inspireSkills/${id}`).once('value', (snapshot) => {
+        done(null, snapshot.val())
+      }, done)
+    },
+
+    saveInspireSkills (id, data, done) {
+      database.ref(`inspireSkills/${id}`).set(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
+
+
+
   }
 }
 
