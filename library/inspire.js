@@ -50,8 +50,7 @@ function getInspireRoute (db, msg) {
 			console.log(err)
 		})
 		console.log(route_choosen)
-		msg.say(route_choosen)
-			.route(route_choosen + "_route")
+		msg.route(route_choosen + "_route")
 	})
 }
 
