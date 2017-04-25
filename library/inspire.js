@@ -51,6 +51,7 @@ function getInspireRoute (db, msg) {
 		})
 		console.log(route_choosen)
 	})
+	console.log(route_choosen)
 	return route_choosen
 }
 
