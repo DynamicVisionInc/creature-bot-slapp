@@ -4,11 +4,7 @@ const Slapp = require('slapp')
 const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
 var Helper = require('./helper.js')
-
-var inspire_routes = [
-    'color_route',
-    'space_route'
-  ];
+var Inspire = require('./inspire.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
@@ -59,60 +55,10 @@ module.exports = (server, db) => {
   // Inspire Handler
   //*********************************************
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
-
-    var skills
-    // Get object of skills
-    db.getInspireSkills(msg.body.event.user, (err, inspire_skills) => {
-      if (err) {
-        console.error(err)
-      }
-
-      skills = inspire_skills
-      if (!(skills instanceof Object))
-      {
-        // If no data exists, create object to store skills
-        skills = {
-            'color' : 0,
-            'space' : 0
-          }
-      }
-      // Create array of skills not done
-      var skills_choosen = []
-      for (var key in skills)
-      {
-        if (skills.hasOwnProperty(key))
-        {
-          if (skills[key] == 0)
-          {
-            skills_choosen.push(key)
-          }
-        }
-      }
-      // If all skills have been done, loop through skills and set to undone and push all skills to skills_choosen
-      if (skills_choosen.length == 0)
-      {
-        for (var key in skills)
-        {
-          if (skills.hasOwnProperty(key))
-          {
-            skills[key] = 0
-            skills_choosen.push(key)
-          }
-        }
-      }
-      // Select randomly from array of skills not done
-      var route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
-
-      skills[route_choosen] = 1
-
-      db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
-        console.log(err)
-      })
-      console.log(route_choosen)
-      msg.route(route_choosen + "_route")
-    })
-
-
+    var route_choosen = Inspire.getInspireRoute(db)
+    console.log(route_choosen)
+    msg.say(route_choosen)
+      .route(route_choosen + "_route")
   })
 
 
