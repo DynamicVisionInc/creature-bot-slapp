@@ -1,5 +1,9 @@
 'use strict'
 
+//*********************************************
+// List of Inspire routes
+//*********************************************
+
 function getInspireRoute (db, msg) {
 	var route_choosen
 	// Get object of skills

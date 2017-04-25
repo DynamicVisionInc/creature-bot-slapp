@@ -62,6 +62,9 @@ module.exports = (server, db) => {
   //*********************************************
   // Begin Color Name Game
   //*********************************************
+  app.message('color', ['direct_mention', 'direct_message'], (msg, text) => {
+    msg.route('color_route')
+  })
   app.route('color_route', (msg, text) => {
 
     var color = Helper.getRandomColor()
