@@ -132,7 +132,29 @@ module.exports = () => {
       })
     },
 
+    // Decode Message CRUD
+    getRandomDecodeMessage (done) {
+      database.ref(`decodeMessage/`).once('value', (snapshot) => {
+        var i = 0;
+        var rand = Math.floor(Math.random() * snapshot.numChildren());
+        snapshot.forEach(function(snapshot) {
+          if (i == rand) {
+            done(null, snapshot.val())
+          }
+          i++;
+        });
+      }, done)
+    },
 
+    saveDecodeMessage (data, done) {
+      database.ref(`decodeMessage/`).push(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
 
   }
 }

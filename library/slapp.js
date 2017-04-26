@@ -8,6 +8,7 @@ const Inspire = require('./inspire.js')
 
 const SpaceImageGame = require('./space-image-game.js')
 const ColorGame = require('./color-game.js')
+const DecodeMessageGame = require('./decode-message-game.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
@@ -55,20 +56,20 @@ module.exports = (server, db) => {
 //*********************************************
 
   //*********************************************
-  // Inspire Handler
+  // Begin Inspire Handler
   //*********************************************
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
     Inspire.getInspireRoute(db, msg)
   })
+  //*********************************************
+  // End Inspire Handler
+  //*********************************************
 
 
   //*********************************************
   // Begin Color Name Game
   //*********************************************
   app.message('color', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg.route('color_route')
-  })
-  app.route('color_route', (msg, text) => {
     ColorGame.run(db, msg)
   })
 
@@ -104,6 +105,43 @@ module.exports = (server, db) => {
   //*********************************************
   // End Space Image Game
   //*********************************************
+
+  //*********************************************
+  // Begin Decode The Message Game
+  //*********************************************
+  app.message('decode', ['direct_mention', 'direct_message'], (msg, text) => {
+    db.saveDecodeMessage({
+      'phrase': 'We See What We Want'
+    },(err) => {
+      if (err) {
+        console.error(err)
+        msg.say(err)
+      }
+    })
+    msg.say('We See What We Want')
+    // var decode_message_counter = 0
+    // // DecodeMessageGame.run(db, msg)
+    // db.getRandomDecodeMessage((err, message) => {
+    //   if (err) {
+    //     console.error(err)
+    //   }
+    //   // Scramble Message
+    // })
+  })
+
+  app.route('decode_response', (msg, state) => {
+
+  })
+
+  app.message('decode_end', (msg, state) => {
+
+  })
+  //*********************************************
+  // End Decode The Message Game
+  //*********************************************
+
+
+
 
 
   app
