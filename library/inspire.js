@@ -15,13 +15,13 @@ function getInspireRoute (db, msg) {
 		if (err) {
 			console.error(err)
 		}
-		var route_choosen = selectInspireSkills(db, inspire_skills)
+		var route_choosen = selectInspireSkills(db, msg, inspire_skills)
 		console.log(route_choosen)
 		msg.route(route_choosen + "_route")
 	})
 }
 
-function selectInspireSkills (db, inspire_skills) {
+function selectInspireSkills (db, msg, inspire_skills) {
 
 	var skills = inspire_skills
 	if (!(skills instanceof Object))
