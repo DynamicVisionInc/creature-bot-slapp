@@ -38,8 +38,8 @@ function getInspireRoute (db, msg) {
 			case 'color':
 				ColorGame.run(db, msg)
 				break;
-			case 'decode_message'
-				// DecodeMessage.run(db, msg)
+			case 'decode_message':
+				DecodeMessage.run(db, msg)
 				break;
 			default:
 				SpaceImageGame.run(db, msg)
