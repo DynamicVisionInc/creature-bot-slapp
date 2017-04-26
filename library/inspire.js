@@ -1,12 +1,22 @@
 'use strict'
 
 //*********************************************
+// Instantiate Inspire Game Objects
+//*********************************************
+const SpaceImageGame = require('./space-image-game.js')
+const ColorGame = require('./color-game.js')
+
+//*********************************************
 // List of Inspire routes
 //*********************************************
 var default_skills = {
 		'color' : 0,
 		'space' : 0
 	}
+
+//*********************************************
+// Inspire Functions
+//*********************************************
 
 function getInspireRoute (db, msg) {
 	var route_choosen
@@ -18,6 +28,18 @@ function getInspireRoute (db, msg) {
 		var route_choosen = selectInspireSkills(db, msg, inspire_skills)
 		console.log(route_choosen)
 		msg.route(route_choosen + "_route")
+		switch (route_choosen)
+		{
+			case 'space':
+				SpaceImageGame.run(db, msg)
+				break;
+			case 'color':
+				ColorGame.run(db, msg)
+				break;
+			default:
+				SpaceImageGame.run(db, msg)
+
+		}
 	})
 }
 
@@ -59,7 +81,9 @@ function selectInspireSkills (db, msg, inspire_skills) {
 	skills[route_choosen] = 1
 	// Store changes made to the skills done
 	db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
-		console.log(err)
+		if (err) {
+			console.log(err)
+		}
 	})
 
 	return route_choosen

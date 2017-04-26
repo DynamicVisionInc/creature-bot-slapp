@@ -66,27 +66,7 @@ module.exports = (server, db) => {
     msg.route('color_route')
   })
   app.route('color_route', (msg, text) => {
-
-    var color = Helper.getRandomColor()
-
-    var color_image_url = 'https://dummyimage.com/100x100/' + color + '/' + color + '.jpg'
-    msg.say('Give this color a unique name?')
-      .say({
-        text: '',
-        "attachments": [
-          {
-              "fallback": color,
-              "color": color,
-              "pretext": '',
-              "title": '',
-              "title_link": '',
-              "text": '',
-              "image_url": color_image_url,
-              "thumb_url": color_image_url,
-          }
-        ]
-      })
-      .route('color_response')
+    ColorGame.run(db, msg)
   })
 
   app.route('color_response', (msg, text) => {
@@ -112,41 +92,11 @@ module.exports = (server, db) => {
     //       msg.say(err)
     //     }
     // })
-    msg.route('space_route')
-  })
-
-  app.route('space_route', (msg, text) => {
-    // Pull from database space images and captions
-    db.getRandomSpaceImage((err, spaceImage) => {
-        if (err) {
-          console.error(err)
-        }
-        // Setup the attachment for the response
-        msg.say({
-          text: '',
-          "attachments": [
-            {
-                "fallback": spaceImage.title,
-                "color": "#36a64f",
-                "pretext": "Here is an image of something in space.  Tell me some words or phrases that come to mind when you look at this picture?",
-                "author_name": "",
-                "author_link": "http://flickr.com/bobby/",
-                "author_icon": "http://flickr.com/icons/bobby.jpg",
-                "title": spaceImage.title,
-                "title_link": "",
-                "text": spaceImage.text,
-                "image_url": spaceImage.image,
-                "thumb_url": spaceImage.image,
-            }
-          ]
-        })
-        .route('space_response')
-    })
+    SpaceImageGame.run(db, msg)
   })
 
   app.route('space_response', (msg, state) => {
     msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
-
   })
   //*********************************************
   // End Space Image Game
