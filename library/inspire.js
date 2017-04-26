@@ -54,7 +54,7 @@ function selectInspireSkills (db, inspire_skills) {
 		}
 	}
 	// Select randomly from array of skills not done
-	route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
+	var route_choosen = skills_choosen[Math.floor(Math.random() * skills_choosen.length)]
 
 	skills[route_choosen] = 1
 	// Store changes made to the skills done
