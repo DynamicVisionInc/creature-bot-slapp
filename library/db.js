@@ -134,7 +134,7 @@ module.exports = () => {
 
     // Decode Message CRUD
     getRandomDecodeMessage (done) {
-      database.ref(`decodeMessage/`).once('value', (snapshot) => {
+      database.ref(`decodeMessages/`).once('value', (snapshot) => {
         var i = 0;
         var rand = Math.floor(Math.random() * snapshot.numChildren());
         snapshot.forEach(function(snapshot) {
@@ -147,7 +147,7 @@ module.exports = () => {
     },
 
     saveDecodeMessage (data, done) {
-      database.ref(`decodeMessage/`).push(data, (err) => {
+      database.ref(`decodeMessages/`).push(data, (err) => {
         if (err) {
           return done(err)
         }

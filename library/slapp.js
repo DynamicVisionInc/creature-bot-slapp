@@ -118,15 +118,17 @@ module.exports = (server, db) => {
         msg.say(err)
       }
     })
-    msg.say('We See What We Want')
-    // var decode_message_counter = 0
-    // // DecodeMessageGame.run(db, msg)
-    // db.getRandomDecodeMessage((err, message) => {
-    //   if (err) {
-    //     console.error(err)
-    //   }
-    //   // Scramble Message
-    // })
+    var decode_message_counter = 0
+    var full_message
+    // DecodeMessageGame.run(db, msg)
+    db.getRandomDecodeMessage((err, message) => {
+      if (err) {
+        console.error(err)
+      }
+      full_message = message.phrase
+      // Scramble Message
+      msg.say(full_message)
+    })
   })
 
   app.route('decode_response', (msg, state) => {
