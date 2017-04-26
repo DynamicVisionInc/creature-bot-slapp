@@ -6,6 +6,9 @@ const ConvoStore = require('slapp-convo-beepboop')
 const Helper = require('./helper.js')
 const Inspire = require('./inspire.js')
 
+const SpaceImageGame = require('./space-image-game.js')
+const ColorGame = require('./color-game.js')
+
 module.exports = (server, db) => {
   let app = Slapp({
     verify_token: process.env.SLACK_VERIFY_TOKEN,
