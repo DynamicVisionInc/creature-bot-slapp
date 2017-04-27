@@ -156,7 +156,7 @@ module.exports = (server, db) => {
         try {
           const parsedData = JSON.parse(rawData);
           // console.log(parsedData);
-          console.log(pasredData.query.pages)
+          console.log(parsedData.query.pages)
 
           // {
           //   "batchcomplete":"",
