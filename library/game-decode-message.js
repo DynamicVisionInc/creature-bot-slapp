@@ -40,7 +40,7 @@ function decodeResponse (db, msg, state) {
     // Return to the user if not correct phrase with bolded phrase and amount of rounds left
     msg.say('You got ' + compared.correct_count + ' of ' + compared.possible + ' correct.  I have bolded the words you positioned correctly')
       .say(compared.markup_phrase)
-      .route('decode_response')
+      .route('decode_response', state)
 
   }
   // Game ends with phrase not being correct
