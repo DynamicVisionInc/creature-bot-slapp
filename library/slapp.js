@@ -150,14 +150,15 @@ module.exports = (server, db) => {
     Https.get('https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json', function(res) {
       // console.log(res)
       res.setEncoding('utf8');
-      let rawData = '';
-      res.on('data', (chunk) => { rawData += chunk; });
+      let raw_data = '';
+      res.on('data', (chunk) => { raw_data += chunk; });
       res.on('end', () => {
         try {
-          const parsedData = JSON.parse(rawData);
+          const parsed_data = JSON.parse(raw_data);
           // console.log(parsedData);
-          console.log(parsedData.query.pages)
-
+          // console.log(parsedData.query.pages)
+          var page_id = Object.keys(parsed_data.query.pages)[0]
+          console.log(page_id)
           // {
           //   "batchcomplete":"",
           //   "continue":
