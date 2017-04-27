@@ -65,9 +65,9 @@ function decodeResponse (db, msg, state) {
 
 function comparePhrases (state) {
   var correct_count = 0
-  var possible = state.original_phrase.length
   var markup_phrase = ''
   var split_original = state.original_phrase.split(' ')
+  var possible = split_original.length
   var split_shuffle = state.shuffled_phrase.split(' ')
   for (var i = 0; i < possible; i++)
   {
