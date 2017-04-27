@@ -127,7 +127,7 @@ module.exports = (server, db) => {
   })
 
   app.route('decode_end', (msg, state) => {
-
+    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
   })
   //*********************************************
   // End Decode The Message Game
