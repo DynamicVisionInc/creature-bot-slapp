@@ -5,7 +5,7 @@ const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
 const Helper = require('./helper.js')
 const Inspire = require('./inspire.js')
-const Http = require('http')
+const Https = require('https')
 
 const SpaceImageGame = require('./game-space-image.js')
 const ColorGame = require('./game-color.js')
@@ -147,7 +147,7 @@ module.exports = (server, db) => {
       path: url,
       port: 80
     }
-    var req = Http.request(options, function(res) {
+    var req = Https.request(options, function(res) {
       console.log(res)
     })
     // Creature-bot returns the wikipedia page url in message
