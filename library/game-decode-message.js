@@ -51,7 +51,7 @@ function decodeResponse (db, msg, state) {
     msg.say('Oops, looks like you were not able to unshuffle the phrase.')
       .say('The phrase is:')
       .say(state.original_phrase)
-      .say('Please tell me, how does this phrase make you feel?')
+      .say('Please tell me, what do you think this phrase means?')
       .route('decode_end')
   }
   // Game ends with phrase being correct
@@ -60,7 +60,7 @@ function decodeResponse (db, msg, state) {
     // If phrase is correct, congratulate the user and ask them to respond to Creature-bot
     // with some words that come to mind when seeing the phrase
     msg.say('You got it correct!')
-      .say('Please tell me, how does this phrase make you feel?')
+      .say('Please tell me, what do you think this phrase means?')
       .route('decode_end')
   }
 }
