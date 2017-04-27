@@ -50,5 +50,6 @@ function shufflePhrase (text) {
 }
 
 module.exports = {
-  run: run
+  run: run,
+  decodeResponse: decodeResponse
 }
