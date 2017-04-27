@@ -158,7 +158,7 @@ module.exports = (server, db) => {
         try {
           const parsed_data = JSON.parse(raw_data);
           console.log(parsed_data)
-          console.log(parsed_data.query.random)
+          console.log(Object.keys(parsed_data.query.random)[0].id)
           // var page_id = Object.keys(parsed_data.query.pages)[0]
           // console.log(page_id)
           var page_id = '25352510'
