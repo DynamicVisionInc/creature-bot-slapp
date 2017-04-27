@@ -10,6 +10,7 @@ function run (db, msg) {
       console.error(err)
     }
     full_message = message.phrase
+    var state
     state.original_phrase = message.phrase
     state.scrambled_phrase = shufflePhrase(message.phrase)
     // Scramble Message
