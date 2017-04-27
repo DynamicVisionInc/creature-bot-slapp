@@ -3,21 +3,18 @@
 function run (db, msg) {
   // Get one random phrase from decode-message-phrases table
   var decode_message_counter = 0
-  var full_message
   // DecodeMessageGame.run(db, msg)
   db.getRandomDecodeMessage((err, message) => {
     if (err) {
       console.error(err)
     }
-    full_message = message.phrase
-    var state
-    state.original_phrase = message.phrase
-    state.scrambled_phrase = shufflePhrase(message.phrase)
+    var original_phrase = message.phrase
+    var scrambled_phrase = shufflePhrase(message.phrase)
     // Scramble Message
     // Scramble phrase and present to the user
     // Route to the scramble response game
-    msg.say(full_message)
-      .say(state.scrambled_phrase)
+    msg.say(original_phrase)
+      .say(scrambled_phrase)
   })
 }
 
