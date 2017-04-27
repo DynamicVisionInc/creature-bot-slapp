@@ -149,7 +149,8 @@ module.exports = (server, db) => {
     }
     Https.get('https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json', function(res) {
       // console.log(res)
-
+      res.setEncoding('utf8');
+      let rawData = '';
       res.on('data', (chunk) => { rawData += chunk; });
       res.on('end', () => {
         try {
