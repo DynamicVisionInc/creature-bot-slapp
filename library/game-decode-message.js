@@ -38,19 +38,8 @@ function decodeResponse (db, msg, state) {
     state.round ++
     // Return to the user if not correct phrase with bolded phrase and amount of rounds left
     msg.say('Round ' + state.round + ' of 3.')
-      .say({
-        text: 'You got ' + compared.correct_count + ' of ' + compared.possible + ' correct.  I have bolded the words you positioned correctly',
-        "attachments": [
-          {
-              "fallback": compared.markup_phrase,
-              "color": '',
-              "pretext": '',
-              "title": '',
-              "title_link": '',
-              "text": compared.markup_phrase,
-          }
-        ]
-      })
+      .say('You got ' + compared.correct_count + ' of ' + compared.possible + ' correct.  I have bolded the words you positioned correctly')
+      .say(compared.markup_phrase)
       .say('Try again, remember the shuffled phrase is:')
       .say(state.shuffled_phrase)
       .route('decode_response', state)
