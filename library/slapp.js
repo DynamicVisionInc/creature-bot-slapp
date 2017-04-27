@@ -133,9 +133,25 @@ module.exports = (server, db) => {
   // End Decode The Message Game
   //*********************************************
 
+  //*********************************************
+  // Begin Random Wikipedia Game
+  //*********************************************
+
+  app.message('wikipedia', ['direct_mention', 'direct_message'], (msg, text) => {
+
+    // Make ajax request to wikipedia random url
+    var url = 'https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json'
+    express.get(url, function(req, res) {
+      console.log(res)
+    })
+    // Creature-bot returns the wikipedia page url in message
 
 
+  })
 
+  //*********************************************
+  // End Random Wikipedia Game
+  //*********************************************
 
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
