@@ -148,7 +148,18 @@ module.exports = (server, db) => {
       port: 80
     }
     Https.get('https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json', function(res) {
-      console.log(res)
+      // console.log(res)
+
+      res.on('data', (chunk) => { rawData += chunk; });
+      res.on('end', () => {
+        try {
+          const parsedData = JSON.parse(rawData);
+          console.log(parsedData);
+        } catch (e) {
+          console.error(e.message);
+        }
+      });
+
     }).on('error', function(e) {
       console.log('Got error: ' + e.message)
     })
