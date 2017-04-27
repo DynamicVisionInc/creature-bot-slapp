@@ -110,46 +110,15 @@ module.exports = (server, db) => {
   // Begin Decode The Message Game
   //*********************************************
   app.message('decode', ['direct_mention', 'direct_message'], (msg, text) => {
-    db.saveDecodeMessage({
-      'phrase': 'Chance Favors the Prepared Mind'
-    },(err) => {
-      if (err) {
-        console.error(err)
-        msg.say(err)
-      }
-    })
-    db.saveDecodeMessage({
-      'phrase': 'Failing is not always a Failure'
-    },(err) => {
-      if (err) {
-        console.error(err)
-        msg.say(err)
-      }
-    })
-    db.saveDecodeMessage({
-      'phrase': 'Everyday is a Second Chance'
-    },(err) => {
-      if (err) {
-        console.error(err)
-        msg.say(err)
-      }
-    })
-    db.saveDecodeMessage({
-      'phrase': 'You Always Have A Choice'
-    },(err) => {
-      if (err) {
-        console.error(err)
-        msg.say(err)
-      }
-    })
-    db.saveDecodeMessage({
-      'phrase': 'Wake Up And Be Inspired'
-    },(err) => {
-      if (err) {
-        console.error(err)
-        msg.say(err)
-      }
-    })
+    // db.saveDecodeMessage({
+    //   'phrase': 'Chance Favors the Prepared Mind'
+    // },(err) => {
+    //   if (err) {
+    //     console.error(err)
+    //     msg.say(err)
+    //   }
+    // })
+
     DecodeMessageGame.run(db, msg)
   })
 
