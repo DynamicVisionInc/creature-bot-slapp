@@ -158,9 +158,10 @@ module.exports = (server, db) => {
         try {
           const parsed_data = JSON.parse(raw_data);
           console.log(parsed_data)
-          console.log(parsed_data.query.random.id)
-          var page_id = Object.keys(parsed_data.query.pages)[0]
-          console.log(page_id)
+          console.log(parsed_data.query.random)
+          // var page_id = Object.keys(parsed_data.query.pages)[0]
+          // console.log(page_id)
+          var page_id = '25352510'
           msg.say('https://en.wikipedia.org/wiki?curid=' + page_id)
 
         } catch (e) {
