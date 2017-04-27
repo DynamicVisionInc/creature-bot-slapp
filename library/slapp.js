@@ -147,9 +147,8 @@ module.exports = (server, db) => {
       path: url,
       port: 80
     }
-    var url = 'https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json'
-    var url = 'https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=1&rnnamespace=0&format=json'
-    Https.get(url, function(res) {
+
+    Https.get('https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json', function(res) {
       // console.log(res)
       res.setEncoding('utf8');
       let raw_data = '';
@@ -157,11 +156,8 @@ module.exports = (server, db) => {
       res.on('end', () => {
         try {
           const parsed_data = JSON.parse(raw_data);
-          console.log(parsed_data)
-          console.log(Object.keys(parsed_data.query.random)[0].id)
-          // var page_id = Object.keys(parsed_data.query.pages)[0]
-          // console.log(page_id)
-          var page_id = '25352510'
+          var page_id = Object.keys(parsed_data.query.pages)[0]
+          console.log(page_id)
           msg.say('https://en.wikipedia.org/wiki?curid=' + page_id)
 
         } catch (e) {
