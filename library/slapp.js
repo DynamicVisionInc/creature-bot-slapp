@@ -5,7 +5,7 @@ const Context = require('slapp-context-beepboop')
 const ConvoStore = require('slapp-convo-beepboop')
 const Helper = require('./helper.js')
 const Inspire = require('./inspire.js')
-const Express = require('express')
+const Http = require('http')
 
 const SpaceImageGame = require('./game-space-image.js')
 const ColorGame = require('./game-color.js')
@@ -141,8 +141,12 @@ module.exports = (server, db) => {
   app.message('wikipedia', ['direct_mention', 'direct_message'], (msg, text) => {
 
     // Make ajax request to wikipedia random url
-    var url = 'https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json'
-    Express.get(url, function(req, res) {
+    var url = '/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json'
+    var options = {
+      host: 'https://en.wikipedia.org'
+      path: url
+    }
+    var req = http.request(options, function(res) {
       console.log(res)
     })
     // Creature-bot returns the wikipedia page url in message
