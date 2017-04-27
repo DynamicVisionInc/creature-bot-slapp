@@ -157,7 +157,7 @@ module.exports = (server, db) => {
             .say(title)
             .say(extract)
             .say({
-              text: '': [
+              text: 'Random Wikipedia article:': [
                 {
                     "fallback": '',
                     "color": '',
