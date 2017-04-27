@@ -147,11 +147,11 @@ module.exports = (server, db) => {
       path: url,
       port: 80
     }
-    var req = Https.request(options, function(res) {
+    Https.get('https://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json', function(res) {
       console.log(res)
+    }).on('error', function(e) {
+      console.log('Got error: ' + e.message)
     })
-
-    req.end()
     // Creature-bot returns the wikipedia page url in message
 
 
