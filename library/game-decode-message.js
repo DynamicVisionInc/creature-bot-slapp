@@ -22,7 +22,7 @@ function shufflePhrase (text) {
   var words = text.split(" ")
   var result = ""
 
-  while(word.length > 0)
+  while(words.length > 0)
   {
     if (result.length > 0) { result += " " }
     result += words.splice(Math.abs(Math.random() * (words.length - 1)), 1)
