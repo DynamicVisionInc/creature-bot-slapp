@@ -155,28 +155,9 @@ module.exports = (server, db) => {
       res.on('end', () => {
         try {
           const parsed_data = JSON.parse(raw_data);
-          // console.log(parsedData);
-          // console.log(parsedData.query.pages)
           var page_id = Object.keys(parsed_data.query.pages)[0]
           console.log(page_id)
-          // {
-          //   "batchcomplete":"",
-          //   "continue":
-          //     {
-          //       "grncontinue":"0.254317695723|0.254317907928|37158578|0",
-          //       "continue":"grncontinue||"
-          //     },
-          //   "query":
-          //     {
-          //       "pages":
-          //         {
-          //           "37120105":
-          //             {
-          //               "pageid":37120105,
-          //               "ns":0,
-          //               "title":"Woodford International School",
-          //               "extract":"<p><b>Woodford International School</b>, also called the <b>International School</b>, is a school in Honiara, Solomon Islands; apart from the Honiara Solomon Islands College of Higher Education (SICHE), a university in Honiara; and the University of the South Pacific (USP) Solomon Islands Campus. The school is located just to the northwest of the Solomon Islands College of Higher Education.</p>\n<h2><span id=\"History\">History</span></h2>\n<p>The school was founded in the mid-1950s</p>..."}}}}
-
+          msg.say('https://en.wikipedia.org/wiki?curid=' + page_id)
 
         } catch (e) {
           console.error(e.message);
