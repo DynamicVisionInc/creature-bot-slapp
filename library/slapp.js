@@ -157,7 +157,7 @@ module.exports = (server, db) => {
       res.on('end', () => {
         try {
           const parsed_data = JSON.parse(raw_data);
-          console.log(parse_data)
+          console.log(parsed_data)
           var page_id = Object.keys(parsed_data.query.pages)[0]
           console.log(page_id)
           msg.say('https://en.wikipedia.org/wiki?curid=' + page_id)
