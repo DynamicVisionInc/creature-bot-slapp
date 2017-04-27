@@ -10,9 +10,8 @@ function run (db, msg) {
     // Scramble phrase
     var shuffled_phrase = shufflePhrase(message.phrase)
     // Send attachement and route to the scramble response game
-    msg.say('Attempt to unshuffle this phrase, you get 3 trys.  I will help you along the way.')
-      .say({
-        text: '',
+    msg.say({
+        text: 'Attempt to unshuffle this phrase, you get 3 trys.  I will help you along the way.',
         "attachments": [
           {
               "fallback": shuffled_phrase,
@@ -38,9 +37,20 @@ function decodeResponse (db, msg, state) {
     // Increase round by 1
     state.round ++
     // Return to the user if not correct phrase with bolded phrase and amount of rounds left
-    msg.say('You got ' + compared.correct_count + ' of ' + compared.possible + ' correct.  I have bolded the words you positioned correctly')
-      .say('Round ' + state.round + ' of 3.')
-      .say(compared.markup_phrase)
+    msg.say('Round ' + state.round + ' of 3.')
+      .say({
+        text: 'You got ' + compared.correct_count + ' of ' + compared.possible + ' correct.  I have bolded the words you positioned correctly',
+        "attachments": [
+          {
+              "fallback": compared.markup_phrase,
+              "color": '',
+              "pretext": '',
+              "title": '',
+              "title_link": '',
+              "text": compared.markup_phrase,
+          }
+        ]
+      })
       .say('Try again, remember the shuffled phrase is:')
       .say(state.shuffled_phrase)
       .route('decode_response', state)
