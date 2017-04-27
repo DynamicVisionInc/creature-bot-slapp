@@ -143,7 +143,7 @@ module.exports = (server, db) => {
     // Make ajax request to wikipedia random url
     var url = '/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json'
     var options = {
-      host: 'https://en.wikipedia.org',
+      host: 'en.wikipedia.org',
       path: url,
       port: 80
     }
