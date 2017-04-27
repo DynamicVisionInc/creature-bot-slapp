@@ -6,9 +6,9 @@ const ConvoStore = require('slapp-convo-beepboop')
 const Helper = require('./helper.js')
 const Inspire = require('./inspire.js')
 
-const SpaceImageGame = require('./space-image-game.js')
-const ColorGame = require('./color-game.js')
-const DecodeMessageGame = require('./decode-message-game.js')
+const SpaceImageGame = require('./game-space-image.js')
+const ColorGame = require('./game-color.js')
+const DecodeMessageGame = require('./game-decode-message.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
@@ -118,17 +118,7 @@ module.exports = (server, db) => {
     //     msg.say(err)
     //   }
     // })
-    var decode_message_counter = 0
-    var full_message
-    // DecodeMessageGame.run(db, msg)
-    db.getRandomDecodeMessage((err, message) => {
-      if (err) {
-        console.error(err)
-      }
-      full_message = message.phrase
-      // Scramble Message
-      msg.say(full_message)
-    })
+    DecodeMessageGame.run(db, msg)
   })
 
   app.route('decode_response', (msg, state) => {
