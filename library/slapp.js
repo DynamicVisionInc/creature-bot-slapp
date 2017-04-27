@@ -150,6 +150,8 @@ module.exports = (server, db) => {
     var req = Https.request(options, function(res) {
       console.log(res)
     })
+
+    req.end()
     // Creature-bot returns the wikipedia page url in message
 
 
