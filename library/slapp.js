@@ -156,6 +156,18 @@ module.exports = (server, db) => {
           msg.say('https://en.wikipedia.org/wiki?curid=' + page_id)
             .say(title)
             .say(extract)
+            .say({
+              text: '': [
+                {
+                    "fallback": '',
+                    "color": '',
+                    "pretext": '',
+                    "title": title,
+                    "title_link": 'https://en.wikipedia.org/wiki?curid=' + page_id,
+                    "text": extract.replace(/<(?:.|\n)*?>/gm, ''),
+                }
+              ]
+            })
 
         } catch (e) {
           console.error(e.message);
