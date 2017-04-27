@@ -153,10 +153,7 @@ module.exports = (server, db) => {
           var title = parsed_data.query.pages[page_id].title
           var extract = parsed_data.query.pages[page_id].extract
           console.log(page_id)
-          msg.say('https://en.wikipedia.org/wiki?curid=' + page_id)
-            .say(title)
-            .say(extract)
-            .say({
+          msg.say({
               text: 'Random Wikipedia article:',
               'attachments': [
                 {
