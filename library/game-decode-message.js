@@ -21,7 +21,7 @@ function run (db, msg) {
   })
 }
 
-function shufflePhrase () {
+function shufflePhrase (text) {
   var words = text.split(" ")
   var result = ""
 
