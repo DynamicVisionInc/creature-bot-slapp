@@ -88,7 +88,7 @@ function comparePhrases (state, given_message) {
     if ( split_original[i].toUpperCase() === split_given_message[i].toUpperCase() )
     {
       correct_count ++
-      markup_phrase += '<b>' + split_given_message[i] + '<b> '
+      markup_phrase += '*' + split_given_message[i] + '* '
     }
     else
     {
