@@ -144,7 +144,8 @@ module.exports = (server, db) => {
     var url = '/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exchars=500&format=json'
     var options = {
       host: 'https://en.wikipedia.org',
-      path: url
+      path: url,
+      port: 80
     }
     var req = Http.request(options, function(res) {
       console.log(res)
