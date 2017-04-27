@@ -69,7 +69,7 @@ function comparePhrases (state) {
   var markup_phrase = ''
   var split_original = state.original_phrase.split(' ')
   var split_shuffle = state.shuffled_phrase.split(' ')
-  for (i = 0; i < possible; i++)
+  for (var i = 0; i < possible; i++)
   {
     // Strict comparison of string values, lower cased, for same possition of the shuffle
     if ( split_original[i].toUpperCase() === split_shuffle[i].toUpperCase() )
