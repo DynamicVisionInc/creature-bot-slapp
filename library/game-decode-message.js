@@ -31,7 +31,7 @@ function run (db, msg) {
 function decodeResponse (db, msg, state) {
   // Compare response to the original phrase
   // Generate a copy of the phrase but with the matching words bolded
-  var compared = comparePhrases(state)
+  var compared = comparePhrases(state, msg.body.event.text)
   // Round continues
   if (compared.correct_count != compared.possible && state.round <= 3)
   {
@@ -63,23 +63,23 @@ function decodeResponse (db, msg, state) {
   }
 }
 
-function comparePhrases (state) {
+function comparePhrases (state, given_message) {
   var correct_count = 0
   var markup_phrase = ''
   var split_original = state.original_phrase.split(' ')
   var possible = split_original.length
-  var split_shuffle = state.shuffled_phrase.split(' ')
+  var split_given_message = given_message.split(' ')
   for (var i = 0; i < possible; i++)
   {
     // Strict comparison of string values, lower cased, for same possition of the shuffle
-    if ( split_original[i].toUpperCase() === split_shuffle[i].toUpperCase() )
+    if ( split_original[i].toUpperCase() === split_given_message[i].toUpperCase() )
     {
       correct_count ++
-      markup_phrase += '*' + split_shuffle[i] + '* '
+      markup_phrase += '*' + split_given_message[i] + '* '
     }
     else
     {
-      markup_phrase += split_shuffle[i] + ' '
+      markup_phrase += split_given_message[i] + ' '
     }
   }
   return {
