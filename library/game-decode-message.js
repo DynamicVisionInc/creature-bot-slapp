@@ -15,6 +15,20 @@ function run (db, msg) {
     // Route to the scramble response game
     msg.say(original_phrase)
       .say(scrambled_phrase)
+      .say({
+        text: '',
+        "attachments": [
+          {
+              "fallback": '',
+              "color": '',
+              "pretext": '',
+              "title": '',
+              "title_link": '',
+              "text": scrambled_phrase,
+          }
+        ]
+      })
+      .route('decode_response', { 'original_phrase': original_phrase, 'scrambled_phrase': scrambled_phrase })
   })
 }
 

@@ -46,7 +46,7 @@ module.exports = (server, db) => {
   I will respond to the following messages:
   \`help\` - to see this message
   \`hi\` - to demonstrate a conversation that tracks state.
-  \`thanks\` - to demonstrate a simple response.
+  \`inspire\` - invoke an inspirational game.
   \`<type-any-other-text>\` - to demonstrate a random emoticon response, some of the time :wink:.
   \`attachment\` - to see a Slack attachment message.
   `
@@ -123,10 +123,11 @@ module.exports = (server, db) => {
   })
 
   app.route('decode_response', (msg, state) => {
-
+    msg.say(state.original_phrase)
+      .say(state.scrambled_phrase)
   })
 
-  app.message('decode_end', (msg, state) => {
+  app.route('decode_end', (msg, state) => {
 
   })
   //*********************************************
