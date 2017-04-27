@@ -123,8 +123,7 @@ module.exports = (server, db) => {
   })
 
   app.route('decode_response', (msg, state) => {
-    msg.say(state.original_phrase)
-      .say(state.scrambled_phrase)
+    DecodeMessageGame.decodeResponse(db, msg, state)
   })
 
   app.route('decode_end', (msg, state) => {
