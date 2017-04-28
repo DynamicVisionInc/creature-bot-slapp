@@ -29,7 +29,7 @@ function DeviantArtResponse (msg) {
 					for (var prop in result.feed.entry[0].link)
 					{
 						// console.log(result.feed.entry[0].link[prop]['$'])
-						if (result.feed.entry[0].link[prop]['$'][type] == 'image/jpeg')
+						if (result.feed.entry[0].link[prop]['$'].type == 'image/jpeg')
 						{
 							console.log(result.feed.entry[0].link[prop]['$']['href'])
 						}
