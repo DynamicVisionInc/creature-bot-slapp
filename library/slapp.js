@@ -157,7 +157,7 @@ module.exports = (server, db) => {
   })
 
   app.route('wikiedpia_response', (msg, state) => {
-    DeviantArt.response(msg)
+    DeviantArt.DeviantArtResponse(msg)
   })
 
   app.route('wikiedpia_end', (msg, state) => {

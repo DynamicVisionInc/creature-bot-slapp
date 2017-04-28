@@ -3,6 +3,10 @@
 const Https = require('https')
 
 function run (msg, text) {
+
+}
+
+function DeviantArtResponse (msg) {
 	// Make ajax request to deviant art random url
 	var url = 'http://backend.deviantart.com/rss.xml?type=deviation&q=boost%3Apopular+in%3Adigitalart%2Fdrawings+' +
 	Https.get(url, function(res) {
@@ -36,11 +40,6 @@ function run (msg, text) {
 		console.log('Got error: ' + e.message)
 	})
 	// Creature-bot returns the wikipedia page url in message
-}
-
-function response (msg) {
-
-
 }
 
 module.exports = {
