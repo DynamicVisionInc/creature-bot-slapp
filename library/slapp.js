@@ -150,21 +150,21 @@ module.exports = (server, db) => {
   //*********************************************
 
   //*********************************************
-  // Begin Random Wikipedia Game
+  // Begin Deviant Art Game
   //*********************************************
   app.message('deviantart', ['direct_mention', 'direct_message'], (msg, text) => {
     DeviantArt.run(msg)
   })
 
-  app.route('wikiedpia_response', (msg, state) => {
+  app.route('deviantart_response', (msg, state) => {
     DeviantArt.DeviantArtResponse(msg)
   })
 
-  app.route('wikiedpia_end', (msg, state) => {
+  app.route('deviantart_end', (msg, state) => {
     msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
   })
   //*********************************************
-  // End Random Wikipedia Game
+  // End Deviant Art Game
   //*********************************************
 
 
