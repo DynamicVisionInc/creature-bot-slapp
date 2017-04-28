@@ -11,6 +11,8 @@ const ColorGame = require('./game/color.js')
 const DecodeMessageGame = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
 const Lorempixel = require('./game/lorempixel.js')
+
+const Flickr = require('./game/flickr.js')
 const DeviantArt = require('./game/deviant-art.js')
 
 module.exports = (server, db) => {
@@ -154,11 +156,11 @@ module.exports = (server, db) => {
   // Begin Deviant Art Game
   //*********************************************
   app.message('deviantart', ['direct_mention', 'direct_message'], (msg, text) => {
-    DeviantArt.run(msg)
+    Flickr.run(msg)
   })
 
   app.route('deviantart_response', (msg, state) => {
-    DeviantArt.DeviantArtResponse(msg)
+    Flickr.DeviantArtResponse(msg)
   })
 
   app.route('deviantart_end', (msg, state) => {
