@@ -43,6 +43,6 @@ function DeviantArtResponse (msg) {
 }
 
 module.exports = {
-	run: run
+	run: run,
 	DeviantArtResponse:  DeviantArtResponse
 }
