@@ -1,7 +1,7 @@
 'use strict'
 
 const Https = require('https')
-
+const ParseString = require('../../bower_components/xml2js/lib/xml2js.js').praseString
 
 function run (msg, text) {
 	msg.say('Lets play a word association game, tell me a word first.')
@@ -22,7 +22,9 @@ function DeviantArtResponse (msg) {
 		res.on('end', () => {
 			try {
 				console.log(raw_data)
-
+				ParseString(raw_data, function (err, result) {
+					console.log(result)
+				})
 				// var parser = new DOMParser();
 				// var xml_doc = parser.paserFromString(raw_data, 'text/xml')
 
