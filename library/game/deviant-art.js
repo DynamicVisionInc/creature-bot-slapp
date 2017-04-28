@@ -16,6 +16,8 @@ function DeviantArtResponse (msg) {
 		res.setEncoding('utf8');
 		let raw_data = '';
 		res.on('data', (chunk) => { raw_data += chunk; });
+		console.log('Here is raw data')
+		console.log(raw_data)
 		res.on('end', () => {
 			try {
 				console.log(raw_data)
