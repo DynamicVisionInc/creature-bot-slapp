@@ -7,6 +7,8 @@ const SpaceImageGame = require('./game/space-image.js')
 const ColorGame = require('./game/color.js')
 const DecodeMessage = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
+const Flickr = require('./game/flickr.js')
+
 const Lorempixel = require('./game/lorempixel.js')
 const DeviantArt = require('./game/deviant-art.js')
 
@@ -19,7 +21,8 @@ var default_skills = {
 		'space'				: 0,
 		'decode_message' 	: 0,
 		'wikipedia' 		: 0,
-		'lorempixel'		: 0
+		'lorempixel'		: 0,
+		'flickr'			: 0
 	}
 
 //*********************************************
@@ -52,6 +55,9 @@ function getInspireRoute (db, msg) {
 				break;
 			case 'lorempixel':
 				Lorempixel.run(msg)
+				break;
+			case 'flickr':
+				Flickr.run(msg)
 				break;
 			default:
 				SpaceImageGame.run(db, msg)
