@@ -1,7 +1,7 @@
 'use strict'
 
 const Https = require('https')
-const ParseString = require('xml2js').praseString
+const ParseString = require('xml2js').parseString
 
 function run (msg, text) {
 	msg.say('Lets play a word association game, tell me a word first.')
