@@ -155,15 +155,11 @@ module.exports = (server, db) => {
   //*********************************************
   // Begin Deviant Art Game
   //*********************************************
-  app.message('deviantart', ['direct_mention', 'direct_message'], (msg, text) => {
+  app.message('flickr', ['direct_mention', 'direct_message'], (msg, text) => {
     Flickr.run(msg)
   })
 
-  app.route('deviantart_response', (msg, state) => {
-    Flickr.DeviantArtResponse(msg)
-  })
-
-  app.route('deviantart_end', (msg, state) => {
+  app.route('flickr_response', (msg, state) => {
     msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
   })
   //*********************************************

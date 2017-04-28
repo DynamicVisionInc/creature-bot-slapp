@@ -4,11 +4,6 @@ const Https = require('https')
 const ParseString = require('xml2js').parseString
 
 function run (msg, text) {
-	msg.say('Lets play a word association game, tell me a word first.')
-		.route('deviantart_response')
-}
-
-function DeviantArtResponse (msg) {
 	// Make ajax request to deviant art random url
 	var text = (msg.body.event && msg.body.event.text) || ''
 	var url = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?'
@@ -18,50 +13,36 @@ function DeviantArtResponse (msg) {
 		let raw_data = '';
 		res.on('data', (chunk) => { raw_data += chunk; });
 		console.log('Here is raw data')
-		// console.log(raw_data)
 		res.on('end', () => {
 			try {
-				// console.log(raw_data)
 				ParseString(raw_data, function (err, result) {
-					console.log('Parsed raw_data')
-					// console.log(result.feed.entry[0].link[href])
-
 					for (var prop in result.feed.entry[0].link)
 					{
-						// console.log(result.feed.entry[0].link[prop]['$'])
 						if (result.feed.entry[0].link[prop]['$'].type == 'image/jpeg')
 						{
 							console.log(result.feed.entry[0].link[prop]['$']['href'])
+							msg.say({
+								text: 'Here is a random image, type what comes to mind when you see this image.',
+								"attachments": [
+								{
+									"fallback": '',
+									"color": "#36a64f",
+									"pretext": "",
+									"author_name": "",
+									"author_link": "http://flickr.com/bobby/",
+									"author_icon": "http://flickr.com/icons/bobby.jpg",
+									"title": '',
+									"title_link": "",
+									"text": '',
+									"image_url": result.feed.entry[0].link[prop]['$']['href'],
+									"thumb_url": result.feed.entry[0].link[prop]['$']['href'],
+								}
+								]
+							})
+							.route('flickr_response')
 						}
-						// console.log(prop)
-						// if (result.feed.entry[0].link.hasOwnProperty(prop))
-						// {
-						// 	console.log(result.feed.entry[0].link[prop])
-						// }
 					}
 				})
-				// var parser = new DOMParser();
-				// var xml_doc = parser.paserFromString(raw_data, 'text/xml')
-
-				// console.log(xml_doc)
-
-				// const parsed_data = JSON.parse(raw_data);
-				// var page_id = Object.keys(parsed_data.query.pages)[0]
-				// var title = parsed_data.query.pages[page_id].title
-				// var extract = parsed_data.query.pages[page_id].extract
-				// msg.say({
-				// 	text: 'Tell me what you think of this random Wikipedia article:',
-				// 		'attachments': [
-				// 		{
-				// 			"fallback": '',
-				// 			"color": '',
-				// 			"pretext": '',
-				// 			"title": title,
-				// 			"title_link": 'https://en.wikipedia.org/wiki?curid=' + page_id,
-				// 			"text": extract.replace(/<(?:.|\n)*?>/gm, ''),
-				// 		}]
-				// 	})
-				// 	.route('wikipedia_response')
 			} catch (e) {
 				console.error(e.message);
 			}
@@ -74,5 +55,4 @@ function DeviantArtResponse (msg) {
 
 module.exports = {
 	run: run,
-	DeviantArtResponse:  DeviantArtResponse
 }
