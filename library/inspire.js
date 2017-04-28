@@ -3,10 +3,11 @@
 //*********************************************
 // Instantiate Inspire Game Objects
 //*********************************************
-const SpaceImageGame = require('./game-space-image.js')
-const ColorGame = require('./game-color.js')
-const DecodeMessage = require('./game-decode-message.js')
-const Wikipedia = require('./game-wikipedia.js')
+const SpaceImageGame = require('./game/space-image.js')
+const ColorGame = require('./game/color.js')
+const DecodeMessage = require('./game/decode-message.js')
+const Wikipedia = require('./game/wikipedia.js')
+const DeviantArt = require('./game/deviant-art.js')
 
 //*********************************************
 // List of Inspire routes

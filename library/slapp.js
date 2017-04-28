@@ -6,10 +6,11 @@ const ConvoStore = require('slapp-convo-beepboop')
 const Helper = require('./helper.js')
 const Inspire = require('./inspire.js')
 
-const SpaceImageGame = require('./game-space-image.js')
-const ColorGame = require('./game-color.js')
-const DecodeMessageGame = require('./game-decode-message.js')
-const Wikipedia = require('./game-wikipedia.js')
+const SpaceImageGame = require('./game/space-image.js')
+const ColorGame = require('./game/color.js')
+const DecodeMessageGame = require('./game/decode-message.js')
+const Wikipedia = require('./game/wikipedia.js')
+const DeviantArt = require('./game/deviant-art.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
@@ -147,6 +148,26 @@ module.exports = (server, db) => {
   //*********************************************
   // End Random Wikipedia Game
   //*********************************************
+
+  //*********************************************
+  // Begin Random Wikipedia Game
+  //*********************************************
+  app.message('deviantart', ['direct_mention', 'direct_message'], (msg, text) => {
+    DeviantArt.run(msg)
+  })
+
+  app.route('wikiedpia_response', (msg, state) => {
+    DeviantArt.response(msg)
+  })
+
+  app.route('wikiedpia_end', (msg, state) => {
+    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+  })
+  //*********************************************
+  // End Random Wikipedia Game
+  //*********************************************
+
+
 
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
