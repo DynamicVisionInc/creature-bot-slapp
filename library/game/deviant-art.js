@@ -18,10 +18,11 @@ function DeviantArtResponse (msg) {
 		res.on('data', (chunk) => { raw_data += chunk; });
 		res.on('end', () => {
 			try {
-				var parser = new DOMParser();
-				var xml_doc = parser.paserFromString(raw_data, 'text/xml')
+				console.log(raw_data)
+				// var parser = new DOMParser();
+				// var xml_doc = parser.paserFromString(raw_data, 'text/xml')
 
-				console.log(xml_doc)
+				// console.log(xml_doc)
 
 				// const parsed_data = JSON.parse(raw_data);
 				// var page_id = Object.keys(parsed_data.query.pages)[0]
