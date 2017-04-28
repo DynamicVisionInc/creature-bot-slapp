@@ -9,7 +9,9 @@ function run (msg, text) {
 
 function DeviantArtResponse (msg) {
 	// Make ajax request to deviant art random url
-	var url = 'http://backend.deviantart.com/rss.xml?type=deviation&q=boost%3Apopular+in%3Adigitalart%2Fdrawings+' +
+	var text = (msg.body.event && msg.body.event.text) || ''
+	var url = 'http://backend.deviantart.com/rss.xml?type=deviation&q=boost%3Apopular+in%3Adigitalart%2Fdrawings+' + text
+	console.log(url)
 	Https.get(url, function(res) {
 		res.setEncoding('utf8');
 		let raw_data = '';
