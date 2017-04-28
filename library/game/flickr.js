@@ -25,6 +25,13 @@ function DeviantArtResponse (msg) {
 				ParseString(raw_data, function (err, result) {
 					console.log('Parsed raw_data')
 					console.log(result.feed.entry[0].link)
+					for (var prop in result.feed.entry[0].link)
+					{
+						if (result.feed.entry[0].link.hasOwnProperty(prop))
+						{
+							console.log(result.feed.entry[0].link[prop])
+						}
+					}
 				})
 				// var parser = new DOMParser();
 				// var xml_doc = parser.paserFromString(raw_data, 'text/xml')
