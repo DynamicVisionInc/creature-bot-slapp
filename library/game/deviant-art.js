@@ -44,5 +44,5 @@ function DeviantArtResponse (msg) {
 
 module.exports = {
 	run: run
-	response:  response
+	DeviantArtResponse:  DeviantArtResponse
 }
