@@ -24,7 +24,7 @@ function DeviantArtResponse (msg) {
 				// console.log(raw_data)
 				ParseString(raw_data, function (err, result) {
 					console.log('Parsed raw_data')
-					console.log(result.feed.entry[0].link.href)
+					console.log(result.feed.entry[0].link)
 				})
 				// var parser = new DOMParser();
 				// var xml_doc = parser.paserFromString(raw_data, 'text/xml')
