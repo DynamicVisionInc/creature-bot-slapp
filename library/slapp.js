@@ -137,11 +137,13 @@ module.exports = (server, db) => {
   //*********************************************
   // Begin Random Wikipedia Game
   //*********************************************
-
   app.message('wikipedia', ['direct_mention', 'direct_message'], (msg, text) => {
     Wikipedia.run(msg)
   })
 
+  app.route('wikiedpia_response', (msg, state) => {
+    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+  })
   //*********************************************
   // End Random Wikipedia Game
   //*********************************************
