@@ -24,9 +24,10 @@ function DeviantArtResponse (msg) {
 				// console.log(raw_data)
 				ParseString(raw_data, function (err, result) {
 					console.log('Parsed raw_data')
-					console.log(result.feed.entry[0].link[href])
+					// console.log(result.feed.entry[0].link[href])
 					for (var prop in result.feed.entry[0].link)
 					{
+						console.log(prop)
 						if (result.feed.entry[0].link.hasOwnProperty(prop))
 						{
 							console.log(result.feed.entry[0].link[prop])
