@@ -1,6 +1,6 @@
 'use strict'
 
-const Https = require('https')
+const Http = require('http')
 
 function run (msg, text) {
 	msg.say('Lets play a word association game, tell me a word first.')
@@ -12,7 +12,7 @@ function DeviantArtResponse (msg) {
 	var text = (msg.body.event && msg.body.event.text) || ''
 	var url = 'http://backend.deviantart.com/rss.xml?type=deviation&q=boost%3Apopular+in%3Adigitalart%2Fdrawings+' + text
 	console.log(url)
-	Https.get(url, function(res) {
+	Http.get(url, function(res) {
 		res.setEncoding('utf8');
 		let raw_data = '';
 		res.on('data', (chunk) => { raw_data += chunk; });
