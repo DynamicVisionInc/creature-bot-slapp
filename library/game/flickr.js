@@ -1,6 +1,7 @@
 'use strict'
 
 const Https = require('https')
+const sax = require('../../bower_components/sax/lib/sax.js')
 const ParseString = require('../../bower_components/xml2js/lib/xml2js.js').praseString
 
 function run (msg, text) {
