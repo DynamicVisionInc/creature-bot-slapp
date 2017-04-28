@@ -143,7 +143,7 @@ module.exports = (server, db) => {
     Wikipedia.run(msg)
   })
 
-  app.route('wikiedpia_response', (msg, state) => {
+  app.route('wikipedia_response', (msg, state) => {
     msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
   })
   //*********************************************
