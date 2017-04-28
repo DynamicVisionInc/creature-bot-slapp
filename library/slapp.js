@@ -10,6 +10,7 @@ const SpaceImageGame = require('./game/space-image.js')
 const ColorGame = require('./game/color.js')
 const DecodeMessageGame = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
+const Lorempixel = require('./game/lorempixel.js')
 const DeviantArt = require('./game/deviant-art.js')
 
 module.exports = (server, db) => {
@@ -171,25 +172,7 @@ module.exports = (server, db) => {
   // Begin Lorem Pixel Art Game
   //*********************************************
   app.message('lorempixel', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg.say({
-      text: 'Here is a random image, post what comes to mind when you see this image.',
-      "attachments": [
-        {
-            "fallback": '',
-            "color": "#36a64f",
-            "pretext": "Here is an image of something in space.  Tell me some words or phrases that come to mind when you look at this picture?",
-            "author_name": "",
-            "author_link": "http://flickr.com/bobby/",
-            "author_icon": "http://flickr.com/icons/bobby.jpg",
-            "title": '',
-            "title_link": "",
-            "text": '',
-            "image_url": 'http://lorempixel.com/400/400/',
-            "thumb_url": 'http://lorempixel.com/400/400/',
-        }
-      ]
-    })
-    .route('lorempixel_response')
+    Lorempixel.run(msg)
   })
 
   app.route('lorempixel_response', (msg, state) => {
