@@ -18,11 +18,12 @@ function DeviantArtResponse (msg) {
 		let raw_data = '';
 		res.on('data', (chunk) => { raw_data += chunk; });
 		console.log('Here is raw data')
-		console.log(raw_data)
+		// console.log(raw_data)
 		res.on('end', () => {
 			try {
-				console.log(raw_data)
+				// console.log(raw_data)
 				ParseString(raw_data, function (err, result) {
+					console.log('Parsed raw_data')
 					console.log(result)
 				})
 				// var parser = new DOMParser();
