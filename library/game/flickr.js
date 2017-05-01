@@ -12,7 +12,6 @@ function run (msg, text) {
 		res.setEncoding('utf8');
 		let raw_data = '';
 		res.on('data', (chunk) => { raw_data += chunk; });
-		console.log('Here is raw data')
 		res.on('end', () => {
 			try {
 				ParseString(raw_data, function (err, result) {
@@ -50,7 +49,6 @@ function run (msg, text) {
 	}).on('error', function(e) {
 		console.log('Got error: ' + e.message)
 	})
-	// Creature-bot returns the wikipedia page url in message
 }
 
 module.exports = {
