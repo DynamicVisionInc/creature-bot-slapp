@@ -9,9 +9,6 @@ const DecodeMessage = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
 
-const Lorempixel = require('./game/lorempixel.js')
-const DeviantArt = require('./game/deviant-art.js')
-
 
 //*********************************************
 // List of Inspire routes

@@ -12,8 +12,6 @@ const DecodeMessageGame = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
 
-const DeviantArt = require('./game/deviant-art.js')
-
 module.exports = (server, db) => {
   let app = Slapp({
     verify_token: process.env.SLACK_VERIFY_TOKEN,
