@@ -52,9 +52,6 @@ function getInspireRoute (db, msg) {
 			case 'wikipedia':
 				Wikipedia.run(msg)
 				break;
-			case 'lorempixel':
-				Lorempixel.run(msg)
-				break;
 			case 'flickr':
 				Flickr.run(msg)
 				break;
