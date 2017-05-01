@@ -11,6 +11,7 @@ const ColorGame = require('./game/color.js')
 const DecodeMessageGame = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
+const Dream = require('./game/dream.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
@@ -167,12 +168,11 @@ module.exports = (server, db) => {
   // Begin Dream Game
   //*********************************************
   app.message('dream', ['direct_mention', 'direct_message'], (msg, text) => {
-    msg.say('Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?')
-      .route('dream_response')
+    Dream.run(msg)
   })
 
   app.route('dream_response', (msg, state) => {
-    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
+    Dream.response(db, msg, state)
   })
   //*********************************************
   // End Dream Game

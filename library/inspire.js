@@ -8,7 +8,7 @@ const ColorGame = require('./game/color.js')
 const DecodeMessage = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
-
+const Dream = require('./game/dream.js')
 
 //*********************************************
 // List of Inspire routes
@@ -18,7 +18,8 @@ var default_skills = {
 		'space'				: 0,
 		'decode_message' 	: 0,
 		'wikipedia' 		: 0,
-		'flickr'			: 0
+		'flickr'			: 0,
+		'dream'				: 0
 	}
 
 //*********************************************
@@ -51,6 +52,9 @@ function getInspireRoute (db, msg) {
 				break;
 			case 'flickr':
 				Flickr.run(msg)
+				break;
+			case 'dream':
+				Dream.run(msg)
 				break;
 			default:
 				SpaceImageGame.run(db, msg)
