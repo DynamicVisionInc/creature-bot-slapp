@@ -7,7 +7,6 @@ function run (msg, text) {
 	// Make ajax request to deviant art random url
 	var text = (msg.body.event && msg.body.event.text) || ''
 	var url = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?'
-	console.log(url)
 	Https.get(url, function(res) {
 		res.setEncoding('utf8');
 		let raw_data = '';
@@ -19,7 +18,6 @@ function run (msg, text) {
 					{
 						if (result.feed.entry[0].link[prop]['$'].type == 'image/jpeg')
 						{
-							console.log(result.feed.entry[0].link[prop]['$']['href'])
 							msg.say({
 								text: 'Here is a random image, type what comes to mind when you see this image.',
 								"attachments": [
