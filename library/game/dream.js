@@ -7,7 +7,7 @@ function run (msg) {
 
 function response (db, msg, state) {
 	// Save message sent to Creature-bot about dream
-	db.saveDream(msg.body.event.user, msg.body, (err, convo) => {
+	db.saveDream(msg.body.event.user, msg.body.event.text, (err, convo) => {
 		if (err)
 		{
 			console.log(err)
