@@ -33,8 +33,7 @@ function run (msg, text) {
 									"text": '',
 									"image_url": result.feed.entry[0].link[prop]['$']['href'],
 									"thumb_url": result.feed.entry[0].link[prop]['$']['href'],
-								}
-								]
+								}]
 							})
 							.route('flickr_response')
 						}

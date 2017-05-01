@@ -73,15 +73,18 @@ function comparePhrases (state, given_message) {
   var split_given_message = given_message.split(' ')
   for (var i = 0; i < possible; i++)
   {
-    // Strict comparison of string values, lower cased, for same possition of the shuffle
-    if ( split_original[i].toUpperCase() === split_given_message[i].toUpperCase() )
+    if (split_given_message[i])
     {
-      correct_count ++
-      markup_phrase += '*' + split_given_message[i] + '* '
-    }
-    else
-    {
-      markup_phrase += split_given_message[i] + ' '
+      // Strict comparison of string values, lower cased, for same possition of the shuffle
+      if ( split_original[i].toUpperCase() === split_given_message[i].toUpperCase() )
+      {
+        correct_count ++
+        markup_phrase += '*' + split_given_message[i] + '* '
+      }
+      else
+      {
+        markup_phrase += split_given_message[i] + ' '
+      }
     }
   }
   return {
