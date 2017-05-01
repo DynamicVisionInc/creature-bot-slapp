@@ -165,7 +165,20 @@ module.exports = (server, db) => {
   // End Flcikr Game
   //*********************************************
 
+  //*********************************************
+  // Begin Dream Game
+  //*********************************************
+  app.message('dream', ['direct_mention', 'direct_message'], (msg, text) => {
+    msg.say('Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?')
+      .route('dream_response')
+  })
 
+  app.route('dream_response', (msg, state) => {
+    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
+  })
+  //*********************************************
+  // End Dream Game
+  //*********************************************
 
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
