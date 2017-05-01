@@ -1,6 +1,6 @@
 'use strict'
 
-function run (db) {
+function run (msg) {
 	msg.say('Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?')
 		.route('dream_response')
 }
