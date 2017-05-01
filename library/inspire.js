@@ -21,7 +21,6 @@ var default_skills = {
 		'space'				: 0,
 		'decode_message' 	: 0,
 		'wikipedia' 		: 0,
-		'lorempixel'		: 0,
 		'flickr'			: 0
 	}
 
