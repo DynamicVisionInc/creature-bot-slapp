@@ -32,7 +32,7 @@ function decodeResponse (db, msg, state) {
   // Generate a copy of the phrase but with the matching words bolded
   var compared = comparePhrases(state, msg.body.event.text)
   // Round continues
-  if (compared.correct_count != compared.possible && state.round <= 3)
+  if (compared.correct_count != compared.possible && state.round < 3)
   {
     // Increase round by 1
     state.round ++
@@ -46,7 +46,7 @@ function decodeResponse (db, msg, state) {
 
   }
   // Game ends with phrase not being correct
-  else if (compared.correct_count != compared.possible && state.round > 3)
+  else if (compared.correct_count != compared.possible && state.round >= 3)
   {
     msg.say('Oops, looks like you were not able to unshuffle the phrase.')
       .say('The phrase is:')
