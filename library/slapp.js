@@ -10,9 +10,8 @@ const SpaceImageGame = require('./game/space-image.js')
 const ColorGame = require('./game/color.js')
 const DecodeMessageGame = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
-const Lorempixel = require('./game/lorempixel.js')
-
 const Flickr = require('./game/flickr.js')
+
 const DeviantArt = require('./game/deviant-art.js')
 
 module.exports = (server, db) => {
@@ -153,7 +152,7 @@ module.exports = (server, db) => {
   //*********************************************
 
   //*********************************************
-  // Begin Deviant Art Game
+  // Begin Flickr Game
   //*********************************************
   app.message('flickr', ['direct_mention', 'direct_message'], (msg, text) => {
     Flickr.run(msg)
@@ -163,22 +162,10 @@ module.exports = (server, db) => {
     msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
   })
   //*********************************************
-  // End Deviant Art Game
+  // End Flcikr Game
   //*********************************************
 
-  //*********************************************
-  // Begin Lorem Pixel Art Game
-  //*********************************************
-  app.message('lorempixel', ['direct_mention', 'direct_message'], (msg, text) => {
-    Lorempixel.run(msg)
-  })
 
-  app.route('lorempixel_response', (msg, state) => {
-    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
-  })
-  //*********************************************
-  // End Lorem Pixel Art Game
-  //*********************************************
 
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {
