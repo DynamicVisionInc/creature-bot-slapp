@@ -31,7 +31,7 @@ function end (msg) {
 }
 
 module.exports = {
-	run: run
-	response: response
+	run: run,
+	response: response,
 	end: end
 }
