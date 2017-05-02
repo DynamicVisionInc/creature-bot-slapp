@@ -1,5 +1,8 @@
 'use strict'
 
+const Https = require('https')
+const ParseString = require('xml2js').parseString
+
 function run (msg) {
 	var url = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?'
 	Https.get(url, function(res) {
