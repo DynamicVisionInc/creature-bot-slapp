@@ -103,6 +103,11 @@ function shufflePhrase (text) {
     if (result.length > 0) { result += ' ' }
     result += words.splice(Math.abs(Math.random() * (words.length - 1)), 1)
   }
+  if (text === result)
+  {
+    result = shuffle(text)
+  }
+
   return result
 }
 
