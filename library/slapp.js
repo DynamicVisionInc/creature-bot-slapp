@@ -6,12 +6,13 @@ const ConvoStore = require('slapp-convo-beepboop')
 const Helper = require('./helper.js')
 const Inspire = require('./inspire.js')
 
-const SpaceImageGame = require('./game/space-image.js')
-const ColorGame = require('./game/color.js')
-const DecodeMessageGame = require('./game/decode-message.js')
+const SpaceImage = require('./game/space-image.js')
+const Color = require('./game/color.js')
+const DecodeMessage = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
 const Dream = require('./game/dream.js')
+const Write = require('./game/write.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
@@ -73,7 +74,7 @@ module.exports = (server, db) => {
   // Begin Color Name Game
   //*********************************************
   app.message('color', ['direct_mention', 'direct_message'], (msg, text) => {
-    ColorGame.run(db, msg)
+    Color.run(db, msg)
   })
 
   app.route('color_response', (msg, text) => {
@@ -99,7 +100,7 @@ module.exports = (server, db) => {
     //       msg.say(err)
     //     }
     // })
-    SpaceImageGame.run(db, msg)
+    SpaceImage.run(db, msg)
   })
 
   app.route('space_response', (msg, state) => {
@@ -122,11 +123,11 @@ module.exports = (server, db) => {
     //   }
     // })
 
-    DecodeMessageGame.run(db, msg)
+    DecodeMessage.run(db, msg)
   })
 
   app.route('decode_response', (msg, state) => {
-    DecodeMessageGame.decodeResponse(db, msg, state)
+    DecodeMessage.decodeResponse(db, msg, state)
   })
 
   app.route('decode_end', (msg, state) => {
@@ -177,6 +178,26 @@ module.exports = (server, db) => {
   //*********************************************
   // End Dream Game
   //*********************************************
+
+
+  //*********************************************
+  // Begin Dream Game
+  //*********************************************
+  app.message('write', ['direct_mention', 'direct_message'], (msg, text) => {
+    Write.run(msg)
+  })
+
+  app.route('write_response', (msg, state) => {
+    Write.response(msg, state)
+  })
+
+  app.route('write_end' (msg, state) => {
+    Write.end(msg)
+  })
+  //*********************************************
+  // End Dream Game
+  //*********************************************
+
 
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {

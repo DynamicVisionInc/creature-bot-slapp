@@ -3,8 +3,8 @@
 //*********************************************
 // Instantiate Inspire Game Objects
 //*********************************************
-const SpaceImageGame = require('./game/space-image.js')
-const ColorGame = require('./game/color.js')
+const SpaceImage = require('./game/space-image.js')
+const Color = require('./game/color.js')
 const DecodeMessage = require('./game/decode-message.js')
 const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
@@ -39,10 +39,10 @@ function getInspireRoute (db, msg) {
 		switch (route_choosen)
 		{
 			case 'space':
-				SpaceImageGame.run(db, msg)
+				SpaceImage.run(db, msg)
 				break;
 			case 'color':
-				ColorGame.run(db, msg)
+				Color.run(db, msg)
 				break;
 			case 'decode_message':
 				DecodeMessage.run(db, msg)
