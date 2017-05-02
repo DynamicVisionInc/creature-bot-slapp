@@ -27,7 +27,7 @@ function response (msg, state) {
 }
 
 function end (msg) {
-	msg('Thanks')
+	msg.say('Thanks')
 }
 
 module.exports = {
