@@ -60,5 +60,5 @@ function response (msg) {
 
 module.exports = {
 	run: run,
-	response: reponse
+	response: response
 }
