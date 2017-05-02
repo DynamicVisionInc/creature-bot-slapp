@@ -14,7 +14,7 @@ function response (msg, state) {
 	// If count is less than 50, prompt the user and continue back to response
 	if (count < 50)
 	{
-		var words_left = count - 50
+		var words_left = 50 - count
 		msg.say('Still a little more, ' + words_left + ' words to go.')
 			.route('write_response', state)
 	}
