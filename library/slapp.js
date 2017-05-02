@@ -181,7 +181,7 @@ module.exports = (server, db) => {
 
 
   //*********************************************
-  // Begin Dream Game
+  // Begin Writing Game
   //*********************************************
   app.message('write', ['direct_mention', 'direct_message'], (msg, text) => {
     Write.run(msg)
@@ -195,7 +195,7 @@ module.exports = (server, db) => {
     Write.end(msg)
   })
   //*********************************************
-  // End Dream Game
+  // End Writing Game
   //*********************************************
 
 

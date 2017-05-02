@@ -21,7 +21,7 @@ function response (msg, state) {
 	// If count is greater than 50, prompt the user and end the game
 	else if (count >= 50)
 	{
-		msg.say('Excellent, now tell me how you feel about this short story.')
+		msg.say('Excellent, now tell me what you think about this short story.')
 			.route('write_end')
 	}
 }
