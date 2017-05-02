@@ -6,8 +6,11 @@ function run (db, msg) {
 		if (err) {
 			console.error(err)
 		}
-		msg.say('What is your favorite ' + message)
+		for (var prop in)
+		{
+			msg.say('What is your favorite ' + message[prop] + "?")
 			.route('favorite_response')
+		}
 	})
 }
 
