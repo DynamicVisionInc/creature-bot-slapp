@@ -11,6 +11,7 @@ const Flickr = require('./game/flickr.js')
 const Dream = require('./game/dream.js')
 const Write = require('./game/write.js')
 const Headline = require('./game/headline.js')
+const Favorite = require('./game/favorite.js')
 
 //*********************************************
 // List of Inspire routes
@@ -65,6 +66,9 @@ function getInspireRoute (db, msg) {
 				break;
 			case 'headline':
 				Headline.run(msg)
+				break;
+			case 'favorite':
+				Favorite.run(db, msg)
 				break;
 			default:
 				SpaceImage.run(db, msg)

@@ -14,6 +14,7 @@ const Flickr = require('./game/flickr.js')
 const Dream = require('./game/dream.js')
 const Write = require('./game/write.js')
 const Headline = require('./game/headline.js')
+const Favorite = require('./game/favorite.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
