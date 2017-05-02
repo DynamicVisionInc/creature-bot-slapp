@@ -95,11 +95,11 @@ function selectInspireSkills (db, msg, inspire_skills) {
 	// If all skills have been done, loop through skills and set to undone and push all skills to skills_choosen
 	if (skills_choosen.length == 0)
 	{
+		skills = default_skills
 		for (var key in skills)
 		{
 			if (skills.hasOwnProperty(key))
 			{
-				skills[key] = 0
 				skills_choosen.push(key)
 			}
 		}
