@@ -2,15 +2,14 @@
 
 function run (db, msg) {
 	// Get random favorite to ask about
-	db.getRandomDecodeMessage((err, message) => {
+	db.getRandomFavorite((err, message) => {
 		if (err) {
 			console.error(err)
 		}
-		for (var prop in message)
-		{
-			msg.say('What is your favorite ' + message[prop] + "?")
+
+		msg.say('What is your favorite ' + message + "?")
 			.route('favorite_response')
-		}
+
 	})
 }
 
