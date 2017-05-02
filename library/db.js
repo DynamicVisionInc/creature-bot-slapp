@@ -177,6 +177,29 @@ module.exports = () => {
       database.ref(`dreams/${id}`).remove(done)
     },
 
+    // Favorite CRUD
+    getRandomFavorite (done) {
+      database.ref(`favorites/`).once('value', (snapshot) => {
+        var i = 0;
+        var rand = Math.floor(Math.random() * snapshot.numChildren());
+        snapshot.forEach(function(snapshot) {
+          if (i == rand) {
+            done(null, snapshot.val())
+          }
+          i++;
+        });
+      }, done)
+    },
+
+    saveFavorite (data, done) {
+      database.ref(`favorites/`).push(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
 
   }
 }
