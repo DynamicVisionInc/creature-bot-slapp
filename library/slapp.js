@@ -191,7 +191,7 @@ module.exports = (server, db) => {
     Write.response(msg, state)
   })
 
-  app.route('write_end' (msg, state) => {
+  app.route('write_end', (msg, state) => {
     Write.end(msg)
   })
   //*********************************************
