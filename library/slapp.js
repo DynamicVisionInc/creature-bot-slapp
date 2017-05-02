@@ -220,11 +220,11 @@ module.exports = (server, db) => {
   app.message('favorite', ['direct_mention', 'direct_message'], (msg, text) => {
 
     // db.saveFavorite( 'Movie' ,(err) => {})
-    // Favorite.run(msg)
+    Favorite.run(db, msg)
   })
 
   app.route('favorite_response', (msg, state) => {
-    Favorite.response(msg, state)
+    Favorite.response(msg)
   })
 
   //*********************************************
