@@ -13,6 +13,7 @@ const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
 const Dream = require('./game/dream.js')
 const Write = require('./game/write.js')
+const Headline = require('./game/headline.js')
 
 module.exports = (server, db) => {
   let app = Slapp({
@@ -198,6 +199,20 @@ module.exports = (server, db) => {
   // End Writing Game
   //*********************************************
 
+  //*********************************************
+  // Begin Headline Game
+  //*********************************************
+  app.message('headline', ['direct_mention', 'direct_message'], (msg, text) => {
+    Headline.run(msg)
+  })
+
+  app.route('headline_response', (msg, state) => {
+    Headline.response(msg, state)
+  })
+
+  //*********************************************
+  // End Headline Game
+  //*********************************************
 
   app
     .message('motivators', ['direct_mention', 'direct_message'], (msg, text) => {

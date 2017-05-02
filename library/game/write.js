@@ -13,14 +13,14 @@ function response (msg, state) {
 	var message_count = split_message.length
 	var count = state.count + message_count
 	state.count = count
-	// If count is less than 50, prompt the user and continue back to response
+	// If count is less than max words, prompt the user and continue back to response
 	if (count < max_words)
 	{
 		var words_left = max_words - count
 		msg.say('Still a little more, ' + words_left + ' words to go.')
 			.route('write_response', state)
 	}
-	// If count is greater than 50, prompt the user and end the game
+	// If count is greater than max words, prompt the user and end the game
 	else if (count >= max_words)
 	{
 		msg.say('Excellent, now tell me what you think about this short story.')

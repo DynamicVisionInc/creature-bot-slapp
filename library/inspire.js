@@ -10,6 +10,7 @@ const Wikipedia = require('./game/wikipedia.js')
 const Flickr = require('./game/flickr.js')
 const Dream = require('./game/dream.js')
 const Write = require('./game/write.js')
+const Headline = require('./game/headline.js')
 
 //*********************************************
 // List of Inspire routes
@@ -21,7 +22,8 @@ var default_skills = {
 		'wikipedia' 		: 0,
 		'flickr'			: 0,
 		'dream'				: 0,
-		'write'				: 0
+		'write'				: 0,
+		'headline'			: 0
 	}
 
 //*********************************************
@@ -61,9 +63,11 @@ function getInspireRoute (db, msg) {
 			case 'write':
 				Write.run(msg)
 				break;
+			case 'headline':
+				Headline.run(msg)
+				break;
 			default:
-				SpaceImageGame.run(db, msg)
-
+				SpaceImage.run(db, msg)
 		}
 	})
 }
