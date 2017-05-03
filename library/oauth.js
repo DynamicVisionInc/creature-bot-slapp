@@ -20,8 +20,6 @@ module.exports = (server, db) => {
 
   server.get('/cron', (req, res) => {
 
-    res.send('Hello World')
-
     var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=C0320RUB4&text=HelloWorld'
 
     Https.get(url, function(res) {
@@ -29,7 +27,7 @@ module.exports = (server, db) => {
       let raw_data = '';
       res.on('data', (chunk) => { raw_data += chunk; });
       res.on('end', () => {
-
+        res.send('Hello World')
       })
     })
 
