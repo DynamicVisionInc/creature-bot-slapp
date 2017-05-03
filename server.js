@@ -12,6 +12,10 @@ const PORT = process.env.PORT || 3000
 
 var Application = express()
 
+Application.get('/main', function (req, res) {
+	res.send('Hello World')
+})
+
 App(express()).listen(PORT, (err) => {
   if (err) {
     return console.error(err)
@@ -20,6 +24,4 @@ App(express()).listen(PORT, (err) => {
   console.log('http server started on port %s', PORT)
 })
 
-App.get('/main', function (req, res) {
-	res.send('Hello World')
-})
+
