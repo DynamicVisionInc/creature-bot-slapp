@@ -45,14 +45,33 @@ module.exports = (server, db) => {
 
     var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_CLIENT_SECRET + '&channel=C0320RUB4&text=HelloWorld'
 
-    Https.get(url, function(res) {
-      res.setEncoding('utf8');
-      let raw_data = '';
-      res.on('data', (chunk) => { raw_data += chunk; });
-      res.on('end', () => {
-        res.send('Hello World')
-      })
-    })
+    var message = {
+        token: process.env.SLACK_VERIFY_TOKEN,
+        channel: "@C0320RUB4",
+        as_user: false,
+        text: "This is a message with attachments"
+    }
+
+    var qs = querystring.stringify(message);
+
+    var options = {
+        "method": "GET",
+        "hostname": "slack.com",
+        "path": "/api/chat.postMessage?" + qs
+    };
+
+    var req = http.request(options, function (res) {
+        var chunks = [];
+
+        res.on("data", function (chunk) {
+            chunks.push(chunk);
+        });
+
+        res.on("end", function () {
+            var body = Buffer.concat(chunks);
+            console.log(body.toString());
+        });
+    });
 
   })
 
