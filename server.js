@@ -9,6 +9,9 @@ const App = require('./library/')
 const express = require('express')
 const PORT = process.env.PORT || 3000
 
+
+var Application = express()
+
 App(express()).listen(PORT, (err) => {
   if (err) {
     return console.error(err)
@@ -17,7 +20,6 @@ App(express()).listen(PORT, (err) => {
   console.log('http server started on port %s', PORT)
 })
 
-Application = express()
 
 Application.get('/main', function (req, res) {
 	res.send('Hello World')
