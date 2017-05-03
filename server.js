@@ -17,3 +17,6 @@ App(express()).listen(PORT, (err) => {
   console.log('http server started on port %s', PORT)
 })
 
+express.get('/main', function (req, res) {
+	res.send('Hello World')
+})
