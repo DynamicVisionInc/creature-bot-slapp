@@ -5,13 +5,34 @@ const slack = require('slapp/client')
 
 const ConvoStore = require('./convo-store')
 
+const Https = require('https')
+
 module.exports = (server, db) => {
   let clientId = process.env.SLACK_CLIENT_ID
   let clientSecret = process.env.SLACK_CLIENT_SECRET
   let domain = process.env.DOMAIN
 
-  server.get('/main', (req, res) => {
+  // let app = Slapp({
+  //   verify_token: process.env.SLACK_VERIFY_TOKEN,
+  //   context: Context(),
+  //   convo_store: ConvoStore()
+  // })
+
+  server.get('/cron', (req, res) => {
+
     res.send('Hello World')
+
+    var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=C0320RUB4&text=HelloWorld'
+
+    Https.get(url, function(res) {
+      res.setEncoding('utf8');
+      let raw_data = '';
+      res.on('data', (chunk) => { raw_data += chunk; });
+      res.on('end', () => {
+
+      })
+    })
+
   })
 
   server.get('/add', (req, res) => {
