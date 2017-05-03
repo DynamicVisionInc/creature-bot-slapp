@@ -79,8 +79,8 @@ module.exports = (server, db) => {
     Color.run(db, msg)
   })
 
-  app.route('color_response', (msg, text) => {
-    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+  app.route('color_response', (msg, state) => {
+    Color.response(db, msg, state)
   })
   //*********************************************
   // End Color Name Game

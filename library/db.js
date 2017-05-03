@@ -201,6 +201,23 @@ module.exports = () => {
       })
     },
 
+    // Color CRUD
+    saveUserColor (id, data, done) {
+      database.ref(`userColors/${id}`).push(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
+
+    getUserColor (id, done) {
+      database.ref(`userColors/${id}`).once('value', (snapshot) => {
+        done(null, snapshot.val())
+      }, done)
+    },
+
   }
 }
 

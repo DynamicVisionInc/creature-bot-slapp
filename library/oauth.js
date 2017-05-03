@@ -20,14 +20,7 @@ var attachments = [{
     color: "#3964db"
 }];
 
-var message = {
-    token: "your-token",
-    channel: "@daniel",
-    as_user: false,
-    username: "daniel",
-    attachments: JSON.stringify(attachments),
-    text: "This is a message with attachments"
-}
+
 
 
 module.exports = (server, db) => {
@@ -43,34 +36,33 @@ module.exports = (server, db) => {
 
   server.get('/cron', (req, res) => {
 
-    var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_CLIENT_SECRET + '&channel=C0320RUB4&text=HelloWorld'
+    var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_CLIENT_SECRET + '&channel=@C0320RUB4&text=HelloWorld'
 
     var message = {
         token: process.env.SLACK_VERIFY_TOKEN,
         channel: "@C0320RUB4",
-        as_user: false,
         text: "This is a message with attachments"
     }
 
     var qs = querystring.stringify(message);
 
     var options = {
-        "method": "GET",
-        "hostname": "slack.com",
-        "path": "/api/chat.postMessage?" + qs
+      "method": "GET",
+      "hostname": "slack.com",
+      "path": "/api/chat.postMessage?" + qs
     };
 
     var req = http.request(options, function (res) {
-        var chunks = [];
+      var chunks = [];
 
-        res.on("data", function (chunk) {
-            chunks.push(chunk);
-        });
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
 
-        res.on("end", function () {
-            var body = Buffer.concat(chunks);
-            console.log(body.toString());
-        });
+      res.on("end", function () {
+        var body = Buffer.concat(chunks);
+        console.log(body.toString());
+      });
     });
 
   })
