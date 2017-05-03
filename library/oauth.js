@@ -10,6 +10,10 @@ module.exports = (server, db) => {
   let clientSecret = process.env.SLACK_CLIENT_SECRET
   let domain = process.env.DOMAIN
 
+  server.get('/main', (req, res) => {
+    res.send('Hello World')
+  })
+
   server.get('/add', (req, res) => {
     console.log('add')
 
