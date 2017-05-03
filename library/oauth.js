@@ -5,7 +5,30 @@ const slack = require('slapp/client')
 
 const ConvoStore = require('./convo-store')
 
-const Https = require('https')
+var http = require("https");
+var querystring = require('querystring');
+
+var attachments = [{
+    fallback: "Attachment 1 Fallback",
+    title: "This is Attachment 1",
+    text: "Attachment 1 Text",
+    color: "#3964db"
+}, {
+    fallback: "Attachment 2 Fallback",
+    title: "This is Attachment 2",
+    text: "Attachment 2 Text",
+    color: "#3964db"
+}];
+
+var message = {
+    token: "your-token",
+    channel: "@daniel",
+    as_user: false,
+    username: "daniel",
+    attachments: JSON.stringify(attachments),
+    text: "This is a message with attachments"
+}
+
 
 module.exports = (server, db) => {
   let clientId = process.env.SLACK_CLIENT_ID
@@ -20,7 +43,7 @@ module.exports = (server, db) => {
 
   server.get('/cron', (req, res) => {
 
-    var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=C0320RUB4&text=HelloWorld'
+    var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_CLIENT_SECRET + '&channel=C0320RUB4&text=HelloWorld'
 
     Https.get(url, function(res) {
       res.setEncoding('utf8');
