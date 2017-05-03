@@ -40,7 +40,7 @@ module.exports = (server, db) => {
 
     var message = {
         user : process.env.SLACK_CLIENT_ID,
-        token: process.env.SLACK_VERIFY_TOKEN,
+        token: process.env.SLACK_CLIENT_SECRET,
         channel: "@C0320RUB4",
         text: "This is a message with attachments"
     }
