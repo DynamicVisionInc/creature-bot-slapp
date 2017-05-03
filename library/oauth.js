@@ -36,9 +36,10 @@ module.exports = (server, db) => {
 
   server.get('/cron', (req, res) => {
 
-    var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_CLIENT_SECRET + '&channel=@C0320RUB4&text=HelloWorld'
+    var url = 'https://slack.com/api/chat.postMessage?user=' + process.env.SLACK_CLIENT_ID + '&token=' + process.env.SLACK_CLIENT_SECRET + '&channel=@C0320RUB4&text=HelloWorld'
 
     var message = {
+        user : process.env.SLACK_CLIENT_ID,
         token: process.env.SLACK_VERIFY_TOKEN,
         channel: "@C0320RUB4",
         text: "This is a message with attachments"
