@@ -20,8 +20,6 @@ App(express()).listen(PORT, (err) => {
   console.log('http server started on port %s', PORT)
 })
 
-
-Application.get('/main', function (req, res) {
+App.get('/main', function (req, res) {
 	res.send('Hello World')
 })
-
