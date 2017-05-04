@@ -225,7 +225,7 @@ module.exports = (server, db) => {
   })
 
   app.route('favorite_response', (msg, state) => {
-    Favorite.response(msg)
+    Favorite.response(db, msg, state)
   })
 
   //*********************************************

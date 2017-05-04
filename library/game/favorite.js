@@ -8,12 +8,19 @@ function run (db, msg) {
 		}
 
 		msg.say('What is your favorite ' + message + "?")
-			.route('favorite_response')
+			.route('favorite_response', { 'favorite' : message })
 
 	})
 }
 
-function response (msg) {
+function response (db, msg, state) {
+	var favorite = state.favorite
+	db.saveUserFavorite(msg.body.event.user, {  favorite : msg.body.event.text, type : favorite }, (err, convo) => {
+		if (err)
+		{
+			console.log(err)
+		}
+	})
 	msg.say('Great, thanks.')
 }
 

@@ -201,6 +201,17 @@ module.exports = () => {
       })
     },
 
+    // User Favorite CRUD
+    saveUserFavorite (id, data, done) {
+      database.ref(`userFavorites/${id}`).push(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
+
     // Color CRUD
     saveUserColor (id, data, done) {
       database.ref(`userColors/${id}`).push(data, (err) => {
