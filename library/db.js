@@ -212,7 +212,7 @@ module.exports = () => {
       })
     },
 
-    // Color CRUD
+    // User Color CRUD
     saveUserColor (id, data, done) {
       database.ref(`userColors/${id}`).push(data, (err) => {
         if (err) {
@@ -225,6 +225,23 @@ module.exports = () => {
 
     getUserColor (id, done) {
       database.ref(`userColors/${id}`).once('value', (snapshot) => {
+        done(null, snapshot.val())
+      }, done)
+    },
+
+    // User Flickr CRUD
+    saveUserFlickr (id, data, done) {
+      database.ref(`userFlickr/${id}`).push(data, (err) => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(null)
+      })
+    },
+
+    getUserFlickr (id, done) {
+      database.ref(`userFlickr/${id}`).once('value', (snapshot) => {
         done(null, snapshot.val())
       }, done)
     },

@@ -35,7 +35,7 @@ function run (msg, text) {
 									"thumb_url": result.feed.entry[0].link[prop]['$']['href'],
 								}]
 							})
-							.route('flickr_response')
+							.route('flickr_response', { 'href' : result.feed.entry[0].link[prop]['$']['href'] })
 						}
 					}
 				})
@@ -46,6 +46,17 @@ function run (msg, text) {
 	}).on('error', function(e) {
 		console.log('Got error: ' + e.message)
 	})
+}
+
+function response (db, msg, state) {
+	var href = state.href
+	db.saveUserFlickr(msg.body.event.user, {  impression : msg.body.event.text, href : href }, (err, convo) => {
+		if (err)
+		{
+			console.log(err)
+		}
+	})
+	msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
 }
 
 module.exports = {
