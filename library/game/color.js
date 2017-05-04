@@ -1,6 +1,6 @@
 'use strict'
 
-const Helper = require('./helper.js')
+const Helper = require('../helper.js')
 
 function run (db, msg) {
   var color = getRandomColor()
