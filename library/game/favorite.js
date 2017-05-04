@@ -6,8 +6,15 @@ function run (db, msg) {
 		if (err) {
 			console.error(err)
 		}
-
-		msg.say('What is your favorite ' + message + "?")
+		msg.say(
+			text: 'What is your favorite ' + message + "?",
+			"attachments": [
+				"callback_id": 'nextcancel_callback',
+				actions: [
+					{ name: 'answer', text: 'Next', type: 'button', value: 'next' },
+					{ name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
+				]
+			])
 			.route('favorite_response', { 'favorite' : message })
 
 	})
