@@ -51,7 +51,9 @@ module.exports = (server, db) => {
 
       var url = 'https://slack.com/api/chat.postMessage?user=token=' + process.env.SLACK_API_TOKEN + '&channel=@C0320RUB4&text=HelloWorld'
 
-
+      console.log('api')
+      console.log(process.env.SLACK_API_TOKEN)
+      consoel.log('api')
       var message = {
         token: 'xoxp-2918553111-20013110662-179088891029-6249dc86e60c14bf3c220a8f9d8ee248',
         channel: "@C0320RUB4",
