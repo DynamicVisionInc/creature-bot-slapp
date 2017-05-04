@@ -121,7 +121,7 @@ module.exports = (server, db) => {
   })
 
   app.route('space_response', (msg, state) => {
-    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+    SpaceImage.response(db, msg)
   })
   //*********************************************
   // End Space Image Game

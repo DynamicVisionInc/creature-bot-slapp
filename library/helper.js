@@ -12,7 +12,6 @@ function returnUserFromMsg(msg) {
 }
 
 function returnMessageFromMsg(msg) {
-	console.log(msg.body)
 	if (msg.body.event && msg.body.event.text != '')
 	{
 		return msg.body.event.text

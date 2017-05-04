@@ -1,5 +1,7 @@
 'use strict'
 
+const Helper = require('../helper.js')
+
 function run (db, msg) {
 	// Pull from database space images and captions
     db.getRandomSpaceImage((err, spaceImage) => {
@@ -34,6 +36,17 @@ function run (db, msg) {
     })
 }
 
+function response (db, msg) {
+    var user = Helper.returnUserFromMsg(msg)
+    var message = Helper.returnMessageFromMsg(msg)
+
+    if (user && message)
+    {
+        msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+    }
+}
+
 module.exports = {
-	run: run
+	run: run,
+    response: response
 }
