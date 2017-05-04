@@ -61,4 +61,5 @@ function response (db, msg, state) {
 
 module.exports = {
 	run: run,
+	response: response
 }
