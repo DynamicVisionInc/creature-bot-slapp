@@ -1,5 +1,7 @@
 'use strict'
 
+const Helper = require('../helper.js')
+
 function run (db, msg) {
 	// Get random favorite to ask about
 	db.getRandomFavorite((err, message) => {
