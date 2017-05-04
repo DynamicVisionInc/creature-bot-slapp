@@ -33,6 +33,11 @@ function run (msg, text) {
 									"text": '',
 									"image_url": result.feed.entry[0].link[prop]['$']['href'],
 									"thumb_url": result.feed.entry[0].link[prop]['$']['href'],
+									"callback_id": 'nextcancel_callback',
+									actions: [
+										{ name: 'answer', text: 'Next', type: 'button', value: 'next' },
+										{ name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
+									]
 								}]
 							})
 							.route('flickr_response', { 'href' : result.feed.entry[0].link[prop]['$']['href'] })
