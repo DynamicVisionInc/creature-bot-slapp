@@ -2,6 +2,7 @@
 
 const Https = require('https')
 const ParseString = require('xml2js').parseString
+const Helper = require('../helper.js')
 
 function run (msg) {
 	var url = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?'
