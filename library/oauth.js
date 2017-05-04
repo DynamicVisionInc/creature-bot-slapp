@@ -77,6 +77,8 @@ module.exports = (server, db) => {
           var body = Buffer.concat(chunks);
           console.log(body.toString());
         });
+      }).on('error', function(err) {
+        callback(requestUrl + ': ' + err.message);
       });
     // })
   })
