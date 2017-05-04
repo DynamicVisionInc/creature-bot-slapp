@@ -39,7 +39,7 @@ module.exports = (server, db) => {
     let params = {
       client_id: clientId,
       client_secret: clientSecret,
-      redirect_uri: `https://${domain || req.get('host')}/add-to-slack`
+      redirect_uri: `https://${domain || req.get('host')}/cron`
     }
 
     slack.oauth.access(params, (err, oauthAccess) => {
