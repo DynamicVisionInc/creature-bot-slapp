@@ -28,7 +28,7 @@ module.exports = (server, db) => {
   // Middleware
   //*********************************************
   app.use((msg, next) => {
-    if (msg.body.event.user)
+    if (msg.body.event && msg.body.event.user)
     {
       // Save message sent to Creature-bot
       db.saveConvo(msg.body.event.user, msg.body, (err, convo) => {
