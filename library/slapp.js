@@ -309,18 +309,18 @@ module.exports = (server, db) => {
   // Test response for boxes
   app.message('yesno', (msg) => {
     msg.say({
-      text: '',
-      attachments: [
-        {
-          text: '',
-          fallback: 'Yes or No?',
-          callback_id: 'yesno_callback',
-          actions: [
-            { name: 'answer', text: 'Yes', type: 'button', value: 'yes' },
-            { name: 'answer', text: 'No',  type: 'button',  value: 'no' }
-          ]
-        }]
-      })
+        text: '',
+        attachments: [
+          {
+            text: '',
+            fallback: 'Yes or No?',
+            callback_id: 'yesno_callback',
+            actions: [
+              { name: 'answer', text: 'Yes', type: 'button', value: 'yes' },
+              { name: 'answer', text: 'No',  type: 'button',  value: 'no' }
+            ]
+          }]
+        })
   })
 
   app.action('yesno_callback', 'answer', (msg, value) => {
