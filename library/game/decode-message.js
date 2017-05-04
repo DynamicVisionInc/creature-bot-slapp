@@ -1,5 +1,7 @@
 'use strict'
 
+const Helper = require('../helper.js')
+
 function run (db, msg) {
   // Get one random phrase from decode-message-phrases table
   db.getRandomDecodeMessage((err, message) => {
@@ -12,14 +14,19 @@ function run (db, msg) {
     // Send attachement and route to the scramble response game
     msg.say({
         text: 'Attempt to unshuffle this phrase, you get 3 trys.  I will help you along the way.',
-        "attachments": [
+        attachments: [
           {
-              "fallback": shuffled_phrase,
-              "color": '',
-              "pretext": '',
-              "title": '',
-              "title_link": '',
-              "text": shuffled_phrase,
+              fallback: shuffled_phrase,
+              color: '',
+              pretext: '',
+              title: '',
+              title_link: '',
+              text: shuffled_phrase,
+              callback_id: 'nextcancel_callback',
+              actions: [
+                { name: 'answer', text: 'Next', type: 'button', value: 'next' },
+                { name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
+              ]
           }
         ]
       })
@@ -28,40 +35,46 @@ function run (db, msg) {
 }
 
 function decodeResponse (db, msg, state) {
-  // Compare response to the original phrase
-  // Generate a copy of the phrase but with the matching words bolded
-  var compared = comparePhrases(state, msg.body.event.text)
-  // Round continues
-  if (compared.correct_count != compared.possible && state.round < 3)
-  {
-    // Increase round by 1
-    state.round ++
-    // Return to the user if not correct phrase with bolded phrase and amount of rounds left
-    msg.say('Round ' + state.round + ' of 3.')
-      .say('You got ' + compared.correct_count + ' of ' + compared.possible + ' correct.  I have bolded the words you positioned correctly')
-      .say(compared.markup_phrase)
-      .say('Try again, remember the shuffled phrase is:')
-      .say(state.shuffled_phrase)
-      .route('decode_response', state)
+  var user = Helper.returnUserFromMsg(msg)
+  var message = Helper.returnMessageFromMsg(msg)
 
-  }
-  // Game ends with phrase not being correct
-  else if (compared.correct_count != compared.possible && state.round >= 3)
+  if (user && message)
   {
-    msg.say('Oops, looks like you were not able to unshuffle the phrase.')
-      .say('The phrase is:')
-      .say(state.original_phrase)
-      .say('Please tell me, what do you think this phrase means?')
-      .route('decode_end')
-  }
-  // Game ends with phrase being correct
-  else
-  {
-    // If phrase is correct, congratulate the user and ask them to respond to Creature-bot
-    // with some words that come to mind when seeing the phrase
-    msg.say('You got it correct!')
-      .say('Please tell me, what do you think this phrase means?')
-      .route('decode_end')
+    // Compare response to the original phrase
+    // Generate a copy of the phrase but with the matching words bolded
+    var compared = comparePhrases(state, message)
+    // Round continues
+    if (compared.correct_count != compared.possible && state.round < 3)
+    {
+      // Increase round by 1
+      state.round ++
+      // Return to the user if not correct phrase with bolded phrase and amount of rounds left
+      msg.say('Round ' + state.round + ' of 3.')
+        .say('You got ' + compared.correct_count + ' of ' + compared.possible + ' correct.  I have bolded the words you positioned correctly')
+        .say(compared.markup_phrase)
+        .say('Try again, remember the shuffled phrase is:')
+        .say(state.shuffled_phrase)
+        .route('decode_response', state)
+
+    }
+    // Game ends with phrase not being correct
+    else if (compared.correct_count != compared.possible && state.round >= 3)
+    {
+      msg.say('Oops, looks like you were not able to unshuffle the phrase.')
+        .say('The phrase is:')
+        .say(state.original_phrase)
+        .say('Please tell me, what do you think this phrase means?')
+        .route('decode_end')
+    }
+    // Game ends with phrase being correct
+    else
+    {
+      // If phrase is correct, congratulate the user and ask them to respond to Creature-bot
+      // with some words that come to mind when seeing the phrase
+      msg.say('You got it correct!')
+        .say('Please tell me, what do you think this phrase means?')
+         .route('decode_end')
+    }
   }
 }
 
