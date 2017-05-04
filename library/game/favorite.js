@@ -23,14 +23,20 @@ function run (db, msg) {
 }
 
 function response (db, msg, state) {
-	var favorite = state.favorite
-	db.saveUserFavorite(msg.body.event.user, {  favorite : msg.body.event.text, type : favorite }, (err, convo) => {
-		if (err)
-		{
-			console.log(err)
-		}
-	})
-	msg.say('Great, thanks.')
+	var user = Helper.returnUserFromMsg(msg)
+	var message = Helper.returnMessageFromMsg(msg)
+
+	if (user && message)
+	{
+		var favorite = state.favorite
+		db.saveUserFavorite(user, {  favorite : message, type : favorite }, (err, convo) => {
+			if (err)
+			{
+				console.log(err)
+			}
+		})
+		msg.say('Great, thanks.')
+	}
 }
 
 module.exports = {
