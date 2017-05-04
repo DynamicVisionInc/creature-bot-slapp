@@ -6,7 +6,7 @@ function run (msg) {
 	msg.say({
 		"attachments": [
 		{
-			'Writing everyday will increase your creativity.  Write a 25 word story and I will keep track of the amount of words you use when you enter the message.'
+			'Writing everyday will increase your creativity.  Write a 25 word story and I will keep track of the amount of words you use when you enter the message.',
 			"callback_id": 'nextcancel_callback',
 			actions: [
 				{ name: 'answer', text: 'Next', type: 'button', value: 'next' },
