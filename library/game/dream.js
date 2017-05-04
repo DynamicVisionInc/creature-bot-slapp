@@ -2,6 +2,7 @@
 
 function run (msg) {
 	msg.say({
+		text: '',
 		attachments: [
 		{
 			text: 'Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?',
