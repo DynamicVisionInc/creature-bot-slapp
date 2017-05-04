@@ -7,8 +7,8 @@ function run (db, msg) {
 			console.error(err)
 		}
 		msg.say({
-			text: '',
-			"attachments": [
+			text: 'What is your favorite ' + message + '?',
+			'attachment': [
 			{
 				'text' : 'What is your favorite ' + message + '?',
 				"callback_id": 'nextcancel_callback',
