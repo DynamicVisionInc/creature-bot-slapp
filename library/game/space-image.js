@@ -22,6 +22,11 @@ function run (db, msg) {
                 "text": spaceImage.text,
                 "image_url": spaceImage.image,
                 "thumb_url": spaceImage.image,
+                "callback_id": 'nextcancel_callback',
+                actions: [
+                    { name: 'answer', text: 'Next', type: 'button', value: 'next' },
+                    { name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
+                ]
             }
           ]
         })
