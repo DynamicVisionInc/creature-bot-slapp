@@ -17,7 +17,7 @@ function run (db, msg) {
 				]
 			}]
 		})
-			.route('favorite_response', { 'favorite' : message })
+			.route('favorite_response', { 'favorite' : message }, 60)
 
 	})
 }

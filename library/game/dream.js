@@ -11,7 +11,7 @@ function run (msg) {
 			]
 		}]
 	})
-		.route('dream_response')
+		.route('dream_response', {}, 60)
 }
 
 function response (db, msg, state) {

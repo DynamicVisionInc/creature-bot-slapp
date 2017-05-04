@@ -25,7 +25,7 @@ function run (db, msg) {
         }
       ]
     })
-    .route('color_response', { 'color' : color })
+    .route('color_response', { 'color' : color }, 60)
 }
 
 function response (db, msg, state) {
