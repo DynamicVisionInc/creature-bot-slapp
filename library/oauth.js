@@ -53,7 +53,7 @@ module.exports = (server, db) => {
 
 
       var message = {
-        token: oauthAccess,
+        token: process.env.SLACK_VERIFY_TOKEN,
         channel: "@C0320RUB4",
         text: "This is a message with attachments"
       }
