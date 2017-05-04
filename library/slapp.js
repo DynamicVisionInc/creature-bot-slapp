@@ -131,8 +131,29 @@ module.exports = (server, db) => {
   // Begin Decode The Message Game
   //*********************************************
   app.message('decode', ['direct_mention', 'direct_message'], (msg, text) => {
-    db.saveDecodeMessage({ 'phrase': 'Never never never give up' })
-
+    db.saveDecodeMessage({ 'phrase': 'Live life to the fullest' })
+    db.saveDecodeMessage({ 'phrase': 'I think therefore I am' })
+    db.saveDecodeMessage({ 'phrase': 'Life well spent is long' })
+    db.saveDecodeMessage({ 'phrase': 'Knowledge speaks but wisdom listens' })
+    db.saveDecodeMessage({ 'phrase': 'Trust dies but mistrust blossoms.' })
+    db.saveDecodeMessage({ 'phrase': 'Success demands singleness of purpose' })
+    db.saveDecodeMessage({ 'phrase': 'Powerful dreams inspire powerful action' })
+    db.saveDecodeMessage({ 'phrase': 'Work is love made visible' })
+    db.saveDecodeMessage({ 'phrase': 'Big egos have little ears' })
+    db.saveDecodeMessage({ 'phrase': 'All limitations are self imposed' })
+    db.saveDecodeMessage({ 'phrase': 'Action speak louder than words' })
+    db.saveDecodeMessage({ 'phrase': 'Make each day your masterpiece' })
+    db.saveDecodeMessage({ 'phrase': 'Success is dependent on effort' })
+    db.saveDecodeMessage({ 'phrase': 'We are what we think' })
+    db.saveDecodeMessage({ 'phrase': 'Imagination is greater than detail' })
+    db.saveDecodeMessage({ 'phrase': "Don't sweat the small stuff" })
+    db.saveDecodeMessage({ 'phrase': 'Goals are dreams with deadlines' })
+    db.saveDecodeMessage({ 'phrase': 'Never forget about your passion' })
+    db.saveDecodeMessage({ 'phrase': 'Make yourself necessary to somebody' })
+    db.saveDecodeMessage({ 'phrase': 'Be gentle first with yourself' })
+    db.saveDecodeMessage({ 'phrase': 'Failure cannot cope with persistence' })
+    db.saveDecodeMessage({ 'phrase': 'Turn your wounds into Wisdom' })
+    db.saveDecodeMessage({ 'phrase': 'The shortest answer is doing' })
 
     DecodeMessage.run(db, msg)
   })
