@@ -49,10 +49,10 @@ module.exports = (server, db) => {
     //     return res.status(500).send(err.message || err)
     //   }
 
-      var url = 'https://slack.com/api/chat.postMessage?user=token=' + process.env.SLACK_API_TOKEN + '&channel=@C0320RUB4&text=HelloWorld'
+      var url = 'https://slack.com/api/chat.postMessage?user=token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=@C0320RUB4&text=HelloWorld'
 
       console.log('api')
-      console.log(process.env.SLACK_API_TOKEN)
+      console.log(process.env.SLACK_VERIFY_TOKEN)
       console.log('api')
       var message = {
         token: 'xoxp-2918553111-20013110662-179088891029-6249dc86e60c14bf3c220a8f9d8ee248',
