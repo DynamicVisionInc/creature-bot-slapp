@@ -30,8 +30,7 @@ function response (db, msg, state) {
 				console.log(err)
 			}
 		})
-		msg.respond(msg.body.response_url, 'Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?')
-			.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
+		msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
 	}
 }
 
