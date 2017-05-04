@@ -1,15 +1,16 @@
 'use strict'
 
 function run (msg) {
-	msg.say(
+	msg.say({
 		text: 'Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?',
-		"attachments": [
+		"attachments": [{
 			"callback_id": 'nextcancel_callback',
 			actions: [
 				{ name: 'answer', text: 'Next', type: 'button', value: 'next' },
 				{ name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
 			]
-		])
+		}]
+	})
 		.route('dream_response')
 }
 
