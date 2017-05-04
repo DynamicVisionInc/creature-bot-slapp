@@ -49,11 +49,11 @@ module.exports = (server, db) => {
     //     return res.status(500).send(err.message || err)
     //   }
 
-      var url = 'https://slack.com/api/chat.postMessage?user=token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=@C0320RUB4&text=HelloWorld'
+      var url = 'https://slack.com/api/chat.postMessage?user=token=' + process.env.SLACK_API_TOKEN + '&channel=@C0320RUB4&text=HelloWorld'
 
 
       var message = {
-        token: process.env.SLACK_VERIFY_TOKEN,
+        token: process.env.SLACK_API_TOKEN,
         channel: "@C0320RUB4",
         text: "This is a message with attachments"
       }
