@@ -21,13 +21,6 @@ function run (msg) {
 function response (db, msg, state) {
 	var user = Helper.returnUserFromMsg(msg)
 	var message = Helper.returnMessageFromMsg(msg)
-	msg.respond(msg.body.response_url, {
-		text: '',
-		attachments: [
-		{
-			text: 'Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?'
-		}]
-	})
 	if (user && message)
 	{
 		// Save message sent to Creature-bot about dream
@@ -37,7 +30,14 @@ function response (db, msg, state) {
 				console.log(err)
 			}
 		})
-		msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
+		msg.respond(msg.body.response_url, {
+			text: '',
+			attachments: [
+			{
+				text: 'Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?'
+			}]
+		})
+			.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
 	}
 }
 
