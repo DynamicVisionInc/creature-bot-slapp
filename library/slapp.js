@@ -62,6 +62,20 @@ module.exports = (server, db) => {
 //*********************************************
 
   //*********************************************
+  // Game Handler
+  //*********************************************
+  app.action('nextcancel_callback', 'answer', (msg, value) => {
+    if (value === 'next')
+    {
+      Inspire.getInspireRoute(db, msg)
+    }
+    else if (value === 'cancel')
+    {
+      msg.respond(msg.body.response_url, `Canceled`)
+    }
+  })
+
+  //*********************************************
   // Begin Inspire Handler
   //*********************************************
   app.message('inspire', ['direct_mention', 'direct_message'], (msg, text) => {
@@ -309,18 +323,18 @@ module.exports = (server, db) => {
   // Test response for boxes
   app.message('yesno', (msg) => {
     msg.say({
-        text: '',
-        attachments: [
-          {
-            text: '',
-            fallback: 'Yes or No?',
-            callback_id: 'yesno_callback',
-            actions: [
-              { name: 'answer', text: 'Yes', type: 'button', value: 'yes' },
-              { name: 'answer', text: 'No',  type: 'button',  value: 'no' }
-            ]
-          }]
-        })
+      text: '',
+      attachments: [
+        {
+          text: '',
+          fallback: 'Yes or No?',
+          callback_id: 'yesno_callback',
+          actions: [
+            { name: 'answer', text: 'Yes', type: 'button', value: 'yes' },
+            { name: 'answer', text: 'No',  type: 'button',  value: 'no' }
+          ]
+        }]
+      })
   })
 
   app.action('yesno_callback', 'answer', (msg, value) => {

@@ -17,6 +17,11 @@ function run (db, msg) {
           "text": '',
           "image_url": color_image_url,
           "thumb_url": color_image_url,
+          "callback_id": 'nextcancel_callback',
+          actions: [
+            { name: 'answer', text: 'Next', type: 'button', value: 'next' },
+            { name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
+          ]
         }
       ]
     })
