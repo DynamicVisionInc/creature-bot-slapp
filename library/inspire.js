@@ -41,6 +41,7 @@ function getInspireRoute (db, msg) {
 	else
 	{
 		var user = msg.body.user.id
+		msg.respond(msg.body.response_url, `Skipped`)
 	}
 	db.getInspireSkills(user, (err, inspire_skills) => {
 		if (err) {
