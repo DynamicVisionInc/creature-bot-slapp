@@ -36,19 +36,20 @@ module.exports = (server, db) => {
 
   server.get('/cron', (req, res) => {
 
-    let params = {
-      client_id: clientId,
-      client_secret: clientSecret,
-      redirect_uri: `https://${domain || req.get('host')}/cron`
-    }
+    // let params = {
+    //   code: req.query.code,
+    //   client_id: clientId,
+    //   client_secret: clientSecret,
+    //   redirect_uri: `https://${domain || req.get('host')}/cron`
+    // }
 
-    slack.oauth.access(params, (err, oauthAccess) => {
-      if (err) {
-        console.error(err)
-        return res.status(500).send(err.message || err)
-      }
+    // slack.oauth.access(params, (err, oauthAccess) => {
+    //   if (err) {
+    //     console.error(err)
+    //     return res.status(500).send(err.message || err)
+    //   }
 
-      var url = 'https://slack.com/api/chat.postMessage?user=token=' + oauthAccess + '&channel=@C0320RUB4&text=HelloWorld'
+      var url = 'https://slack.com/api/chat.postMessage?user=token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=@C0320RUB4&text=HelloWorld'
 
 
       var message = {
@@ -77,7 +78,7 @@ module.exports = (server, db) => {
           console.log(body.toString());
         });
       });
-    })
+    // })
   })
 
   server.get('/add', (req, res) => {
