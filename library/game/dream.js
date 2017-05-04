@@ -17,14 +17,17 @@ function run (msg) {
 }
 
 function response (db, msg, state) {
-	// Save message sent to Creature-bot about dream
-	db.saveDream(msg.body.event.user, msg.body.event.text, (err, convo) => {
-		if (err)
-		{
-			console.log(err)
-		}
-	})
-	msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
+	if (msg.body.event)
+	{
+		// Save message sent to Creature-bot about dream
+		db.saveDream(msg.body.event.user, msg.body.event.text, (err, convo) => {
+			if (err)
+			{
+				console.log(err)
+			}
+		})
+		msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, I am writing this down.'])
+	}
 }
 
 module.exports = {

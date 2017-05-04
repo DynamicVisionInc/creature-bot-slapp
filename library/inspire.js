@@ -3,6 +3,8 @@
 //*********************************************
 // Instantiate Inspire Game Objects
 //*********************************************
+const Helper = require('./helper.js')
+
 const SpaceImage = require('./game/space-image.js')
 const Color = require('./game/color.js')
 const DecodeMessage = require('./game/decode-message.js')
@@ -34,15 +36,10 @@ var default_skills = {
 function getInspireRoute (db, msg) {
 	var route_choosen
 	// Get object of skills and select a undone route.
-	if (msg.body.event)
-	{
-		var user = msg.body.event.user
-	}
-	else
-	{
-		var user = msg.body.user.id
+	if (!msg.body.event){
 		msg.respond(msg.body.response_url, `Skipped`)
 	}
+	var user = Helper.getUserFromMsg(msg)
 	db.getInspireSkills(user, (err, inspire_skills) => {
 		if (err) {
 			console.error(err)
