@@ -68,6 +68,7 @@ module.exports = (server, db) => {
     if (value === 'next')
     {
       // console.log(msg)
+      msg.respond(msg.body.response_url, `Skipped`)
       Inspire.getInspireRoute(db, msg)
     }
     else if (value === 'cancel')

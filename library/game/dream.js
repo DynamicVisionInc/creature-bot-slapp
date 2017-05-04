@@ -17,10 +17,13 @@ function run (msg) {
 }
 
 function response (db, msg, state) {
-	if (msg.body.event)
+	var user = Helper.returnUserFromMsg(msg)
+	var message = Helper.returnMessageFromMsg(msg)
+
+	if (user && message)
 	{
 		// Save message sent to Creature-bot about dream
-		db.saveDream(msg.body.event.user, msg.body.event.text, (err, convo) => {
+		db.saveDream(user, message, (err, convo) => {
 			if (err)
 			{
 				console.log(err)
