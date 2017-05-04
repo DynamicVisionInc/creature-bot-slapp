@@ -37,7 +37,6 @@ module.exports = (server, db) => {
   server.get('/cron', (req, res) => {
 
     let params = {
-      code: req.query.code,
       client_id: clientId,
       client_secret: clientSecret,
       redirect_uri: `https://${domain || req.get('host')}/add-to-slack`
