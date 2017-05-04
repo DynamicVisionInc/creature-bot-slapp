@@ -48,7 +48,7 @@ function response (db, msg) {
 
 	if (message)
 	{
-		msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+		msg.respond(msg.body.response_url,['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
 	}
 }
 
