@@ -7,7 +7,6 @@ function run (db, msg) {
 			console.error(err)
 		}
 		msg.say({
-			text: 'What is your favorite ' + message + '?',
 			'attachments': [
 			{
 				'text' : 'What is your favorite ' + message + '?',
