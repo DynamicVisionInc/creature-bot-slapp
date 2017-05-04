@@ -3,7 +3,7 @@
 var max_words = 25
 
 function run (msg) {
-	msg.say(
+	msg.say({
 		"attachments": [
 		{
 			'Writing everyday will increase your creativity.  Write a 25 word story and I will keep track of the amount of words you use when you enter the message.'
