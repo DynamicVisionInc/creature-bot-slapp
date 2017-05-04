@@ -131,14 +131,8 @@ module.exports = (server, db) => {
   // Begin Decode The Message Game
   //*********************************************
   app.message('decode', ['direct_mention', 'direct_message'], (msg, text) => {
-    // db.saveDecodeMessage({
-    //   'phrase': 'Chance Favors the Prepared Mind'
-    // },(err) => {
-    //   if (err) {
-    //     console.error(err)
-    //     msg.say(err)
-    //   }
-    // })
+    db.saveDecodeMessage({ 'phrase': 'Never never never give up' })
+
 
     DecodeMessage.run(db, msg)
   })
