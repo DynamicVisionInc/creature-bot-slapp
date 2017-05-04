@@ -46,7 +46,7 @@ function getInspireRoute (db, msg) {
 		if (err) {
 			console.error(err)
 		}
-		var route_choosen = selectInspireSkills(db, msg, inspire_skills)
+		var route_choosen = selectInspireSkills(db, msg, inspire_skills, user)
 		console.log(route_choosen)
 		msg.route(route_choosen + "_route")
 		switch (route_choosen)
@@ -84,7 +84,7 @@ function getInspireRoute (db, msg) {
 	})
 }
 
-function selectInspireSkills (db, msg, inspire_skills) {
+function selectInspireSkills (db, msg, inspire_skills, user) {
 
 	var skills = inspire_skills
 	if (!(skills instanceof Object))
@@ -121,7 +121,7 @@ function selectInspireSkills (db, msg, inspire_skills) {
 
 	skills[route_choosen] = 1
 	// Store changes made to the skills done
-	db.saveInspireSkills(msg.body.event.user, skills, (err, convo) => {
+	db.saveInspireSkills(user, skills, (err, convo) => {
 		if (err) {
 			console.log(err)
 		}
