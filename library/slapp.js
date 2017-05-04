@@ -163,7 +163,7 @@ module.exports = (server, db) => {
   })
 
   app.route('wikipedia_response', (msg, state) => {
-    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+    Wikipedia.run(db, msg)
   })
   //*********************************************
   // End Random Wikipedia Game

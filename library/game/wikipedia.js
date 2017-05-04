@@ -1,6 +1,7 @@
 'use strict'
 
 const Https = require('https')
+const Helper = require('../helper.js')
 
 function run (msg) {
 	// Make ajax request to wikipedia random url
@@ -16,16 +17,21 @@ function run (msg) {
 				var extract = parsed_data.query.pages[page_id].extract
 				msg.say({
 					text: 'Tell me what you think of this random Wikipedia article:',
-						'attachments': [
-						{
-							"fallback": '',
-							"color": '',
-							"pretext": '',
-							"title": title,
-							"title_link": 'https://en.wikipedia.org/wiki?curid=' + page_id,
-							"text": extract.replace(/<(?:.|\n)*?>/gm, ''),
-						}]
-					})
+					attachments: [
+					{
+						fallback: '',
+						color: '',
+						pretext: '',
+						title: title,
+						title_link: 'https://en.wikipedia.org/wiki?curid=' + page_id,
+						text: extract.replace(/<(?:.|\n)*?>/gm, ''),
+						callback_id: 'nextcancel_callback',
+						actions: [
+							{ name: 'answer', text: 'Next', type: 'button', value: 'next' },
+							{ name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
+						]
+					}]
+				})
 					.route('wikipedia_response')
 			} catch (e) {
 				console.error(e.message);
@@ -37,6 +43,16 @@ function run (msg) {
 	// Creature-bot returns the wikipedia page url in message
 }
 
+function response (db, msg) {
+	var message = Helper.returnMessageFromMsg(msg)
+
+	if (message)
+	{
+		msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+	}
+}
+
 module.exports = {
-	run: run
+	run: run,
+	response: response
 }
