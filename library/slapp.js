@@ -72,7 +72,7 @@ module.exports = (server, db) => {
     }
     else if (value === 'cancel')
     {
-      msg.respond(msg.body.response_url, `Canceled`)
+      msg.respond(msg.body.response_url, `Cancelled`)
     }
   })
 
