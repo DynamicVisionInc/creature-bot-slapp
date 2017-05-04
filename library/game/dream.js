@@ -15,13 +15,19 @@ function run (msg) {
 			]
 		}]
 	})
-		.route('dream_response', {}, 60)
+		.route('dream_response', { }, 60)
 }
 
 function response (db, msg, state) {
 	var user = Helper.returnUserFromMsg(msg)
 	var message = Helper.returnMessageFromMsg(msg)
-
+	msg.respond(msg.body.response_url, {
+		text: '',
+		attachments: [
+		{
+			text: 'Writing out your dreams can be helpful when looking for inspiration.  Tell me about a dream you had recently?'
+		}]
+	})
 	if (user && message)
 	{
 		// Save message sent to Creature-bot about dream
