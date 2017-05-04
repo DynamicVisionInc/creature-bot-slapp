@@ -48,7 +48,7 @@ module.exports = (server, db) => {
         return res.status(500).send(err.message || err)
       }
 
-      var url = 'https://slack.com/api/chat.postMessage?user=' + oauthAccess + '&token=' + process.env.SLACK_CLIENT_SECRET + '&channel=@C0320RUB4&text=HelloWorld'
+      var url = 'https://slack.com/api/chat.postMessage?user=token=' + oauthAccess + '&channel=@C0320RUB4&text=HelloWorld'
 
 
       var message = {
