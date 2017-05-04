@@ -329,7 +329,7 @@ module.exports = (server, db) => {
 
 
   // if a user says "do it" in a DM
-  app.message('do it', 'direct_message', (msg) => {
+  app.message('do it', ['mention', 'direct_message'], (msg) => {
     var state = { requested: Date.now() }
     // respond with an interactive message with buttons Yes and No
     msg
