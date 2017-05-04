@@ -25,7 +25,7 @@ function run (db, msg) {
 
 function response (db, msg, state) {
   var color = state.color
-  db.saveUserColor(msg.body.event.user, {  'color' : msg.body.event.text }, (err, convo) => {
+  db.saveUserColor(msg.body.event.user, {  color : msg.body.event.text }, (err, convo) => {
     if (err)
     {
       console.log(err)
