@@ -8,19 +8,6 @@ const ConvoStore = require('./convo-store')
 var http = require("https");
 var querystring = require('querystring');
 
-var attachments = [{
-    fallback: "Attachment 1 Fallback",
-    title: "This is Attachment 1",
-    text: "Attachment 1 Text",
-    color: "#3964db"
-}, {
-    fallback: "Attachment 2 Fallback",
-    title: "This is Attachment 2",
-    text: "Attachment 2 Text",
-    color: "#3964db"
-}];
-
-
 
 
 module.exports = (server, db) => {
@@ -36,26 +23,25 @@ module.exports = (server, db) => {
 
   server.get('/cron', (req, res) => {
 
-    // let params = {
-    //   code: req.query.code,
-    //   client_id: clientId,
-    //   client_secret: clientSecret,
-    //   redirect_uri: `https://${domain || req.get('host')}/cron`
-    // }
+    let params = {
+      code: 'asdf',
+      client_id: clientId,
+      client_secret: clientSecret,
+    }
 
-    // slack.oauth.access(params, (err, oauthAccess) => {
-    //   if (err) {
-    //     console.error(err)
-    //     return res.status(500).send(err.message || err)
-    //   }
+    slack.oauth.access(params, (err, oauthAccess) => {
+      if (err) {
+        console.error(err)
+        return res.status(500).send(err.message || err)
+      }
 
-      var url = 'https://slack.com/api/chat.postMessage?user=token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=@C0320RUB4&text=HelloWorld'
+      var url = 'https://slack.com/api/chat.postMessage?token=' + process.env.SLACK_VERIFY_TOKEN + '&channel=@C0320RUB4&text=Hello World'
 
       console.log('api')
-      console.log(process.env.SLACK_VERIFY_TOKEN)
+      console.log(oauthAccess)
       console.log('api')
       var message = {
-        token: 'xoxp-2918553111-20013110662-179088891029-6249dc86e60c14bf3c220a8f9d8ee248',
+        token: oauthAccess,
         channel: "@C0320RUB4",
         text: "This is a message with attachments"
       }
@@ -82,7 +68,7 @@ module.exports = (server, db) => {
       }).on('error', function(err) {
         callback(requestUrl + ': ' + err.message);
       });
-    // })
+    })
   })
 
   server.get('/add', (req, res) => {
