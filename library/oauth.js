@@ -36,36 +36,49 @@ module.exports = (server, db) => {
 
   server.get('/cron', (req, res) => {
 
-    var url = 'https://slack.com/api/chat.postMessage?user=' + process.env.SLACK_CLIENT_ID + '&token=' + process.env.SLACK_CLIENT_SECRET + '&channel=@C0320RUB4&text=HelloWorld'
-
-    var message = {
-        user : process.env.SLACK_CLIENT_ID,
-        token: process.env.SLACK_CLIENT_SECRET,
-        channel: "@C0320RUB4",
-        text: "This is a message with attachments"
+    let params = {
+      code: req.query.code,
+      client_id: clientId,
+      client_secret: clientSecret,
+      redirect_uri: `https://${domain || req.get('host')}/add-to-slack`
     }
 
-    var qs = querystring.stringify(message);
+    slack.oauth.access(params, (err, oauthAccess) => {
+      if (err) {
+        console.error(err)
+        return res.status(500).send(err.message || err)
+      }
 
-    var options = {
-      "method": "GET",
-      "hostname": "slack.com",
-      "path": "/api/chat.postMessage?" + qs
-    };
+      var url = 'https://slack.com/api/chat.postMessage?user=' + oauthAccess + '&token=' + process.env.SLACK_CLIENT_SECRET + '&channel=@C0320RUB4&text=HelloWorld'
 
-    var req = http.request(options, function (res) {
-      var chunks = [];
 
-      res.on("data", function (chunk) {
-        chunks.push(chunk);
+      var message = {
+        token: oauthAccess,
+        channel: "@C0320RUB4",
+        text: "This is a message with attachments"
+      }
+
+      var qs = querystring.stringify(message);
+
+      var options = {
+        "method": "GET",
+        "hostname": "slack.com",
+        "path": "/api/chat.postMessage?" + qs
+      };
+
+      var req = http.request(options, function (res) {
+        var chunks = [];
+
+        res.on("data", function (chunk) {
+          chunks.push(chunk);
+        });
+
+        res.on("end", function () {
+          var body = Buffer.concat(chunks);
+          console.log(body.toString());
+        });
       });
-
-      res.on("end", function () {
-        var body = Buffer.concat(chunks);
-        console.log(body.toString());
-      });
-    });
-
+    })
   })
 
   server.get('/add', (req, res) => {
