@@ -18,22 +18,27 @@ function run (msg) {
 						{
 							msg.say({
 								text: 'Look at this image and come up with a 6 word headline that could be attributed to the image.',
-								"attachments": [
+								attachments: [
 								{
-									"fallback": '',
-									"color": "#36a64f",
-									"pretext": "",
-									"author_name": "",
-									"author_link": "http://flickr.com/bobby/",
-									"author_icon": "http://flickr.com/icons/bobby.jpg",
-									"title": '',
-									"title_link": "",
-									"text": '',
-									"image_url": result.feed.entry[0].link[prop]['$']['href'],
-									"thumb_url": result.feed.entry[0].link[prop]['$']['href'],
+									fallback: '',
+									color: "#36a64f",
+									pretext: "",
+									author_name: "",
+									author_link: "http://flickr.com/bobby/",
+									author_icon: "http://flickr.com/icons/bobby.jpg",
+									title: '',
+									title_link: "",
+									text: '',
+									image_url: result.feed.entry[0].link[prop]['$']['href'],
+									thumb_url: result.feed.entry[0].link[prop]['$']['href'],
+									callback_id: 'nextcancel_callback',
+									actions: [
+										{ name: 'answer', text: 'Next', type: 'button', value: 'next' },
+										{ name: 'answer', text: 'Cancel', type: 'button', value: 'cancel' },
+									]
 								}]
 							})
-							.route('headline_response')
+							.route('headline_response', { href : result.feed.entry[0].link[prop]['$']['href'] },  60)
 						}
 					}
 				})
@@ -47,17 +52,23 @@ function run (msg) {
 }
 
 function response (msg) {
-	// Count words, if not greater and or equal to six, ask again to generate a headline.
-	var split_message = msg.body.event.text.split(' ')
-	var message_count = split_message.length
-	if (message_count >= 6)
+	var user = Helper.returnUserFromMsg(msg)
+	var message = Helper.returnMessageFromMsg(msg)
+
+	if (user && message)
 	{
-		msg.say(['Great job!', 'Good job!'])
-	}
-	else
-	{
-		msg.say('Try again, this time try to write a 6 word headline.')
-			.route('headline_response')
+		// Count words, if not greater and or equal to six, ask again to generate a headline.
+		var split_message = msg.body.event.text.split(' ')
+		var message_count = split_message.length
+		if (message_count >= 6)
+		{
+			msg.say(['Great job!', 'Good job!'])
+		}
+		else
+		{
+			msg.say('Try again, this time try to write a 6 word headline.')
+				.route('headline_response')
+		}
 	}
 }
 
