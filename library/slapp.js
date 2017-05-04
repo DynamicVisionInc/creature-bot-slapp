@@ -67,6 +67,7 @@ module.exports = (server, db) => {
   app.action('nextcancel_callback', 'answer', (msg, value) => {
     if (value === 'next')
     {
+      console.log(msg)
       Inspire.getInspireRoute(db, msg)
     }
     else if (value === 'cancel')
