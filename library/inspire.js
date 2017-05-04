@@ -40,7 +40,7 @@ function getInspireRoute (db, msg) {
 	}
 	else
 	{
-		console.log(msg.body.actions)
+		console.log(msg.body)
 		var user = msg.body.actions.user.id
 	}
 	db.getInspireSkills(user, (err, inspire_skills) => {
