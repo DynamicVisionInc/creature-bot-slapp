@@ -36,7 +36,7 @@ var default_skills = {
 function getInspireRoute (db, msg) {
 	var route_choosen
 	// Get object of skills and select a undone route.
-	var user = Helper.getUserFromMsg(msg)
+	var user = Helper.returnUserFromMsg(msg)
 	db.getInspireSkills(user, (err, inspire_skills) => {
 		if (err) {
 			console.error(err)
