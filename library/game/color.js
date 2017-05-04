@@ -29,14 +29,17 @@ function run (db, msg) {
 }
 
 function response (db, msg, state) {
-  var color = state.color
-  db.saveUserColor(msg.body.event.user, {  name : msg.body.event.text, color : color }, (err, convo) => {
-    if (err)
-    {
-      console.log(err)
-    }
-  })
-  msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+  if (msg.body.event)
+  {
+    var color = state.color
+    db.saveUserColor(msg.body.event.user, {  name : msg.body.event.text, color : color }, (err, convo) => {
+      if (err)
+      {
+        console.log(err)
+      }
+    })
+    msg.say(['Thanks, I have taken note.', 'Sounds good, I am keeping track of these.', 'Thanks, keep up the good work.'])
+  }
 }
 
 // Retrieve a random color
