@@ -44,6 +44,10 @@ function response (msg, state) {
 				.route('write_end')
 		}
 	}
+	else
+	{
+		msg.say('Alternative for message.')
+	}
 }
 
 function end (msg) {
