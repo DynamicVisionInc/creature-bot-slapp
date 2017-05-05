@@ -21,6 +21,19 @@ function run (msg) {
 }
 
 function response (msg, state) {
+	// Handle button response
+	let answer = msg.body.actions[0].value
+	if (answer === 'next')
+    {
+      msg.respond(msg.body.response_url, { text:``, delete_original: true })
+      Inspire.getInspireRoute(db, msg)
+    }
+    else if (answer === 'cancel')
+    {
+      msg.respond(msg.body.response_url, { text:``, delete_original: true })
+    }
+
+
 	var message = Helper.returnMessageFromMsg(msg)
 
 	if (message)
@@ -43,10 +56,6 @@ function response (msg, state) {
 			msg.say('Excellent, now tell me what you think about this short story.')
 				.route('write_end')
 		}
-	}
-	else
-	{
-		msg.say('Alternative for message.')
 	}
 }
 
