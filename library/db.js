@@ -156,9 +156,9 @@ module.exports = () => {
       })
     },
 
-    // Dream CRUD
+    // User Dream CRUD
     saveDream (id, data, done) {
-      database.ref(`dreams/${id}`).push(data, (err) => {
+      database.ref(`userDreams/${id}`).push(data, (err) => {
         if (err) {
           return done(err)
         }
@@ -168,13 +168,13 @@ module.exports = () => {
     },
 
     getDream (id, done) {
-      database.ref(`dreams/${id}`).once('value', (snapshot) => {
+      database.ref(`userDreams/${id}`).once('value', (snapshot) => {
         done(null, snapshot.val())
       }, done)
     },
 
     deleteDream (id, done) {
-      database.ref(`dreams/${id}`).remove(done)
+      database.ref(`userDreams/${id}`).remove(done)
     },
 
     // Favorite CRUD

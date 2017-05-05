@@ -131,8 +131,7 @@ module.exports = (server, db) => {
   // Begin Decode The Message Game
   //*********************************************
   app.message('decode', ['direct_mention', 'direct_message'], (msg, text) => {
-    // db.saveDecodeMessage({ 'phrase': 'Live life to the fullest' })
-
+    // db.saveDecodeMessage({ 'phrase': '' })
     DecodeMessage.run(db, msg)
   })
 
@@ -227,7 +226,6 @@ module.exports = (server, db) => {
   // Begin Favorites Game
   //*********************************************
   app.message('favorite', ['direct_mention', 'direct_message'], (msg, text) => {
-
     // db.saveFavorite( 'Movie' ,(err) => {})
     Favorite.run(db, msg)
   })
